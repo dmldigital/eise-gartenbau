@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import TrustSection from '../components/TrustSection.astro';
+import ServicesSection from '../components/ServicesSection.astro';
+import ProjectsSection from '../components/ProjectsSection.astro';
+import FaqSection from '../components/FaqSection.astro';
+import ContactSection from '../components/ContactSection.astro';
+import WorkSection from '../components/WorkSection.astro';
+import KnowledgeSection from '../components/KnowledgeSection.astro';
+import Footer from '../components/Footer.astro';
+import { localBusiness, faqPage } from '../data/schema';
+import { startseiteFaq } from '../data/startseiteFaq';
+---
+
+<BaseLayout
+  title="Garten- und Landschaftsbau Weil am Rhein, Lörrach & Basel | Eise"
+  description="Eise Garten- und Landschaftsbau in Weil am Rhein: Gartenplanung, Pools, Schwimmteiche, Terrassen und Pflege. Familienbetrieb seit 1952 im Dreiländereck."
+  jsonLd={[localBusiness(), faqPage(startseiteFaq)]}
+>
+  <Header />
+  <main id="seitenanfang">
+    <Hero />
+    <TrustSection />
+    <ServicesSection />
+    <ProjectsSection />
+    <FaqSection />
+    <ContactSection />
+    <WorkSection />
+    <KnowledgeSection />
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  import { homeStarten } from '../scripts/motion';
+  homeStarten();
+</script>

@@ -1,0 +1,64 @@
+---
+interface Item {
+  label: string;
+  href: string;
+  number?: string;
+}
+
+interface Props {
+  items: Item[];
+  label?: string;
+}
+
+const { items, label = 'Abschnitte dieser Seite' } = Astro.props;
+---
+
+{/* Lesefortschritt: liegt ueber dem Header, damit der Balken nie verdeckt wird. */}
+<div class="pointer-events-none fixed inset-x-0 top-0 z-[1000] h-[3px] bg-transparent" aria-hidden="true">
+  <span data-scroll-progress class="block h-full w-full origin-left scale-x-0 bg-brand-green"></span>
+</div>
+
+<div data-subnav-slot class="sticky top-0 z-[850] will-change-transform">
+  <nav data-subnav aria-label={label} class="border-y border-brand-line bg-white/90 backdrop-blur-md">
+    <div class="mx-auto flex max-w-[2020px] gap-1 overflow-x-auto px-[15px] [scrollbar-width:none] lg:px-[30px] 2xl:px-[50px] [&::-webkit-scrollbar]:hidden">
+      {
+        items.map((item) => (
+          <a
+            href={item.href}
+            aria-current="false"
+            class="group relative flex shrink-0 items-baseline gap-2 whitespace-nowrap px-3 py-4 text-[13px] uppercase leading-[1.1] tracking-[0.04em] text-brand-copy transition-colors duration-300 aria-[current=true]:text-brand-ink hover:text-brand-ink focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-brand-green"
+          >
+            {item.number && <span class="text-[11px] text-brand-green">{item.number}</span>}
+            <span>{item.label}</span>
+            <span
+              aria-hidden="true"
+              class="absolute inset-x-3 bottom-2 h-px origin-left scale-x-0 bg-brand-green transition-transform duration-300 ease-out group-hover:scale-x-100 group-aria-[current=true]:scale-x-100"
+            ></span>
+          </a>
+        ))
+      }
+    </div>
+  </nav>
+</div>
+
+<script>
+  import gsap from 'gsap';
+
+  // Die Sprungleiste dockt immer an die Unterkante des Headers an. Der Header
+  // faehrt beim Abwaertsscrollen mit yPercent:-100 weg — die Leiste rutscht
+  // dann mit nach oben, statt eine Luecke stehen zu lassen.
+  const slot = document.querySelector<HTMLElement>('[data-subnav-slot]');
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+
+  if (slot && header) {
+    const setzeY = gsap.quickSetter(slot, 'y', 'px');
+    let letzterWert = -1;
+
+    gsap.ticker.add(() => {
+      const unterkante = Math.max(0, header.getBoundingClientRect().bottom);
+      if (Math.abs(unterkante - letzterWert) < 0.5) return;
+      letzterWert = unterkante;
+      setzeY(unterkante);
+    });
+  }
+</script>

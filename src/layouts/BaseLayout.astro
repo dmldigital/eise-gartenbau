@@ -1,0 +1,65 @@
+---
+import '../styles/global.css';
+import { firma } from '../data/firma';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Pfad der Seite für Canonical/OG, Standard: aktuelle URL */
+  path?: string;
+  image?: string;
+  noindex?: boolean;
+  breadcrumbs?: { name: string; href: string }[];
+  jsonLd?: Record<string, unknown>[];
+}
+
+const { title, description, path = Astro.url.pathname, image = '/images/og-eise.png', noindex = false, breadcrumbs, jsonLd = [] } = Astro.props;
+const site = Astro.site?.origin ?? firma.url;
+const basis = import.meta.env.BASE_URL;
+// Vorschau auf GitHub Pages (Unterpfad): nicht in Suchmaschinen aufnehmen
+const vorschau = basis !== '/';
+const canonical = new URL(path, site).href;
+const ogImage = new URL(basis + image.replace(/^\//, ''), site).href;
+
+const graph: Record<string, unknown>[] = [...jsonLd];
+if (breadcrumbs?.length) {
+  graph.push({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [{ name: 'Startseite', href: '/' }, ...breadcrumbs].map((b, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: b.name,
+      item: new URL(b.href, site).href,
+    })),
+  });
+}
+---
+
+<!doctype html>
+<html lang="de" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {(noindex || vorschau) && <meta name="robots" content={vorschau ? 'noindex, nofollow' : 'noindex, follow'} />}
+    <meta name="theme-color" content="#353535" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/images/eise-logo.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/images/logo-512.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content={firma.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    {graph.map((entry) => <script type="application/ld+json" set:html={JSON.stringify(entry)} />)}
+  </head>
+  <body class="m-0 min-w-0 overflow-x-clip bg-white font-sans text-[15px] leading-[1.67] text-brand-copy antialiased">
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,463 @@
+---
+const navigation = [
+  { label: 'Leistungen', href: '/leistungen/' },
+  { label: 'Referenzen', href: '/referenzen/' },
+  { label: 'Kundenstimmen', href: '/kundenstimmen/' },
+  { label: 'Über uns', href: '/ueber-uns/' },
+];
+
+const kontakte = [
+  { ort: 'Weil am Rhein', nummer: '07621 964 220', tel: '+497621964220' },
+  { ort: 'Basel', nummer: '+41 61 631 2000', tel: '+41616312000' },
+];
+const metaLinks = [
+  { label: 'Gartentipps', href: '/gartentipps/' },
+  { label: 'Karriere', href: '/karriere/' },
+];
+
+const sheetNavigation = [
+  { label: 'Leistungen', href: '/leistungen/' },
+  { label: 'Referenzen', href: '/referenzen/' },
+  { label: 'Kundenstimmen', href: '/kundenstimmen/' },
+  { label: 'Gartentipps', href: '/gartentipps/' },
+  { label: 'Über uns', href: '/ueber-uns/' },
+  { label: 'Karriere', href: '/karriere/' },
+];
+
+const megaColumns = [
+  {
+    heading: 'Leistungen',
+    links: [
+      { label: 'Gartenplanung & Gestaltung', href: '/leistungen/gartenplanung/' },
+      { label: 'Pools & Wellness', href: '/leistungen/pools/' },
+      { label: 'Schwimmteiche', href: '/leistungen/schwimmteiche/' },
+      { label: 'Mauern, Treppen & Bodenbeläge', href: '/leistungen/mauern-treppen-bodenbelaege/' },
+      { label: 'Gartenhaus & Sauna', href: '/leistungen/gartenhaus-sauna/' },
+      { label: 'Sichtschutz', href: '/leistungen/sichtschutz/' },
+      { label: 'Licht & Ambiente', href: '/leistungen/gartenbeleuchtung/' },
+    ],
+  },
+  {
+    heading: 'Pflanzen & Pflege',
+    links: [
+      { label: 'Pflanzen & Rasen', href: '/leistungen/pflanzen-rasen/' },
+      { label: 'Gartenpflege & Service', href: '/leistungen/gartenpflege/' },
+    ],
+    secondaryHeading: 'Gartenstile',
+    secondaryLinks: [
+      { label: 'Mediterran & Naturgarten', href: '/leistungen/mediterraner-garten/' },
+      { label: 'Moderner Garten', href: '/leistungen/moderner-garten/' },
+      { label: 'Firmengärten', href: '/leistungen/firmengaerten/' },
+    ],
+  },
+];
+
+---
+
+<header data-site-header data-menu-open="false" data-stuck="false" class="group/kopf fixed inset-x-0 top-0 z-[1001] shadow-[0_8px_26px_rgba(0,0,0,0.2)] transition-shadow duration-300 delay-[450ms] max-lg:data-[menu-open=true]:shadow-none max-lg:data-[menu-open=true]:delay-0">
+  {/* Hilfsleiste (nur Desktop): grün, volle Breite. Links die Kontaktwege, rechts Zusatzlinks und Social Media – das Logo-Tab liegt links darüber. */}
+  <div class="hidden h-[40px] bg-brand-green text-white lg:block">
+    <div class="mx-auto flex h-full w-full max-w-[1920px] items-center px-[15px] text-[13px] font-medium xl:px-[30px] 2xl:px-[50px]">
+      <div class="w-[calc(clamp(176px,15vw,224px)+36px)] shrink-0"></div>
+
+      <div class="flex min-w-0 flex-1 items-center justify-between gap-6">
+        <div class="flex items-center">
+          {
+            kontakte.map((k) => (
+              <a href={`tel:${k.tel}`} class="kopf-kontakt group flex h-[40px] items-center gap-2.5 border-l border-white/20 px-5 first:border-l-0 first:pl-0">
+                <span class="kopf-icon"><img src="/images/phone.svg" alt="" aria-hidden="true" class="size-3.5 invert" /></span>
+                <span class="hidden text-white/70 xl:inline">{k.ort}</span>
+                <span class="font-semibold tracking-[0.01em]">{k.nummer}</span>
+              </a>
+            ))
+          }
+          <a href="mailto:info@eise.de" class="kopf-kontakt group flex h-[40px] items-center gap-2.5 border-l border-white/20 px-5">
+            <span class="kopf-icon"><img src="/images/mail.svg" alt="" aria-hidden="true" class="size-3.5 invert" /></span>
+            <span class="font-semibold tracking-[0.01em]">info@eise.de</span>
+          </a>
+        </div>
+
+        <div class="flex items-center gap-6">
+          {
+            metaLinks.map((link) => (
+              <a href={link.href} class="relative py-1 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-left after:scale-x-0 after:bg-white after:transition-transform after:duration-500 after:[transition-timing-function:var(--ease-premium)] hover:after:scale-x-100">
+                {link.label}
+              </a>
+            ))
+          }
+          <span class="hidden h-4 w-px bg-white/25 xl:block" aria-hidden="true"></span>
+          <a href="https://www.facebook.com/eisegarten" target="_blank" rel="noopener" aria-label="Eise auf Facebook" class="kopf-icon hidden xl:grid">
+            <svg viewBox="0 0 24 24" class="size-3.5" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8.2h2.8l.5-3.3h-3.3V8.4c0-.9.4-1.7 1.8-1.7h1.6V3.8s-1.4-.3-2.8-.3c-2.8 0-4.5 1.7-4.5 4.7v2.3H6.8v3.3h2.8V22h3.9z" /></svg>
+          </a>
+          <a href="https://www.instagram.com/eise.gartenlandschaftsbau/" target="_blank" rel="noopener" aria-label="Eise auf Instagram" class="kopf-icon hidden xl:grid">
+            <svg viewBox="0 0 24 24" class="size-3.5" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" /></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* Navigationsleiste: Weiß, gleich breite Felder mit feinen Trennlinien, rechts ein freistehender Kontakt-Button. */}
+  <div class="h-[64px] bg-white transition-colors duration-300 delay-[450ms] max-lg:group-data-[menu-open=true]/kopf:bg-transparent max-lg:group-data-[menu-open=true]/kopf:delay-0 lg:h-[60px]">
+    <div class="mx-auto flex h-full w-full max-w-[1920px] items-center px-[15px] xl:px-[30px] 2xl:px-[50px]">
+      <div class="hidden w-[clamp(176px,15vw,224px)] shrink-0 lg:block"></div>
+
+      <nav class="hidden h-full min-w-0 flex-1 lg:block" aria-label="Hauptnavigation">
+        <ul class="flex h-full list-none p-0">
+          {
+            navigation.map((item) => (
+              <li class="relative flex h-full flex-1 border-l border-black/10" data-menu-parent={item.label === 'Leistungen' ? '' : undefined}>
+                <a
+                  href={item.href}
+                  data-menu-link
+                  aria-haspopup={item.label === 'Leistungen' ? 'true' : undefined}
+                  class="nav-cell group relative flex h-full w-full items-center justify-center overflow-hidden px-3 text-center text-[14px] font-medium uppercase leading-[1.1] tracking-[0.02em] text-brand-ink focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-brand-green"
+                >
+                  <span aria-hidden="true" class="nav-fill"></span>
+                  <span class="relative block overflow-hidden whitespace-nowrap leading-[1.3]">
+                    <span data-menu-text aria-label={item.label} class="block" aria-hidden="false">
+                      {Array.from(item.label).map((letter, i) => <span class="nav-letter" style={`--i:${i}`}>{letter === ' ' ? '\u00a0' : letter}</span>)}
+                    </span>
+                    <span aria-hidden="true" class="absolute inset-x-0 top-full block">
+                      {Array.from(item.label).map((letter, i) => <span class="nav-letter" style={`--i:${i}`}>{letter === ' ' ? '\u00a0' : letter}</span>)}
+                    </span>
+                  </span>
+                </a>
+                {
+                  item.label === 'Leistungen' && (
+                    <div
+                      data-mega-menu
+                      class="pointer-events-none absolute left-0 top-full z-[99] grid min-w-[520px] grid-cols-2 gap-[30px] border-t-[3px] border-t-brand-yellow bg-white p-[30px] opacity-0 shadow-[0_24px_60px_-20px_rgba(18,18,18,0.3)] [clip-path:inset(0_-80px_100%_-80px)]"
+                    >
+                      {megaColumns.map((column) => (
+                        <div>
+                          <div data-mega-item class="mb-2 text-[14px] font-medium leading-[25.05px] text-[#444]">{column.heading}</div>
+                          {column.links.map((link) => (
+                            <div data-mega-item class="relative">
+                              <a href={link.href} class="mega-link">{link.label}</a>
+                            </div>
+                          ))}
+                          {column.secondaryHeading && (
+                            <>
+                              <div class="pt-[22px]"></div>
+                              <div data-mega-item class="mb-2 text-[14px] font-medium leading-[25.05px] text-[#444]">{column.secondaryHeading}</div>
+                              {column.secondaryLinks?.map((link) => (
+                                <div data-mega-item class="relative">
+                                  <a href={link.href} class="mega-link">{link.label}</a>
+                                </div>
+                              ))}
+                            </>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )
+                }
+              </li>
+            ))
+          }
+          <li class="flex h-full items-center border-l border-black/10 pl-6">
+            <a
+              href="/kontakt/"
+              class="nav-cell nav-cta group relative inline-flex h-[42px] items-center gap-3 overflow-hidden bg-brand-anthrazit px-6 text-[14px] font-semibold uppercase leading-[1.1] tracking-[0.04em] text-white shadow-[0_8px_18px_-6px_rgba(0,0,0,0.45)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green"
+            >
+              <span aria-hidden="true" class="nav-fill"></span>
+              <span class="relative block overflow-hidden whitespace-nowrap leading-[1.3]">
+                <span data-menu-text aria-label="Kontakt" class="block">
+                  {Array.from('Kontakt').map((letter, i) => <span class="nav-letter" style={`--i:${i}`}>{letter === ' ' ? '\u00a0' : letter}</span>)}
+                </span>
+                <span aria-hidden="true" class="absolute inset-x-0 top-full block">
+                  {Array.from('Kontakt').map((letter, i) => <span class="nav-letter" style={`--i:${i}`}>{letter === ' ' ? '\u00a0' : letter}</span>)}
+                </span>
+              </span>
+              <img src="/images/arrow-white.svg" alt="" aria-hidden="true" class="relative size-5 transition-transform duration-500 [transition-timing-function:var(--ease-premium)] group-hover:translate-x-1" />
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <button type="button" data-menu-toggle class="relative z-10 ml-auto size-[40px] shrink-0 bg-transparent lg:hidden" aria-expanded="false" aria-controls="mobile-navigation">
+        <span class="sr-only">Menü öffnen</span>
+        <span data-menu-line="top" class="absolute left-1/2 top-[12px] -ml-3 h-0.5 w-6 bg-brand-green transition-colors duration-300 delay-[550ms] max-lg:group-data-[menu-open=true]/kopf:bg-brand-yellow max-lg:group-data-[menu-open=true]/kopf:delay-0"></span>
+        <span data-menu-line="middle" class="absolute left-1/2 top-[19px] -ml-3 h-0.5 w-6 bg-brand-green transition-colors duration-300 delay-[550ms] max-lg:group-data-[menu-open=true]/kopf:bg-brand-yellow max-lg:group-data-[menu-open=true]/kopf:delay-0"></span>
+        <span data-menu-line="bottom" class="absolute left-1/2 top-[26px] -ml-3 h-0.5 w-6 bg-brand-green transition-colors duration-300 delay-[550ms] max-lg:group-data-[menu-open=true]/kopf:bg-brand-yellow max-lg:group-data-[menu-open=true]/kopf:delay-0"></span>
+      </button>
+    </div>
+  </div>
+
+  {/* Logo-Tab: anthrazit, hängt links aus der Kopfzeile und ragt unter die Navigationsleiste; grüner Strich als unterer Abschluss. */}
+  <div class="pointer-events-none absolute inset-x-0 top-0">
+    <div class="mx-auto w-full max-w-[1920px] px-[15px] xl:px-[30px] 2xl:px-[50px]">
+      <div
+        data-logo-tab
+        class="pointer-events-auto relative flex h-[78px] w-[158px] items-center justify-start pl-[17px] border-b-[5px] border-brand-green bg-brand-anthrazit [filter:drop-shadow(0_10px_14px_rgba(0,0,0,0.38))] lg:h-[126px] lg:w-[clamp(176px,15vw,224px)] lg:justify-center lg:pl-0"
+      >
+        <a data-mobile-link href="/#seitenanfang" class="block w-[124px] lg:w-[clamp(140px,12.4vw,182px)]" aria-label="Eise Garten- und Landschaftsbau – Startseite">
+          <img src="/images/eise-logo.svg" width="682" height="252" alt="Eise – natürlich schöne Gärten" class="block h-auto w-full" />
+        </a>
+        <aside
+          id="mobile-navigation"
+          data-mobile-menu
+          class="invisible pointer-events-none absolute bottom-full left-0 w-[158px] overflow-hidden bg-brand-anthrazit text-white lg:hidden"
+          aria-hidden="true"
+        >
+          <div class="max-h-[calc(100svh-112px)] min-w-[calc(100vw-30px)] overflow-y-auto overscroll-contain px-[17px] pb-8 pt-[88px]">
+            <nav aria-label="Mobile Navigation">
+              <ul class="m-0 list-none border-t border-white/15 p-0">
+                {
+                  sheetNavigation.map((item) => (
+                    <li class="overflow-hidden border-b border-white/15">
+                      <a data-mobile-link href={item.href} class="block py-[clamp(13px,2.3svh,18px)] text-[16px] font-medium uppercase leading-[1.2] tracking-[0.08em] text-white transition-opacity duration-300 active:opacity-60">
+                        <span data-menu-reveal class="block">{item.label}</span>
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </nav>
+
+            <a data-menu-block data-mobile-link href="/kontakt/" class="mt-7 flex h-[52px] items-center justify-center bg-white text-[14px] font-semibold uppercase tracking-[0.1em] text-brand-anthrazit transition-opacity duration-300 active:opacity-80">
+              Kontakt
+            </a>
+
+            <div data-menu-block class="mt-6 grid grid-cols-2 gap-x-4 gap-y-4 text-[15px] leading-[1.4]">
+              <a href="tel:+497621964220" class="block">
+                <span class="block text-[12px] uppercase tracking-[0.08em] text-white/55">Weil am Rhein</span>
+                <span class="font-medium text-white">07621 964 220</span>
+              </a>
+              <a href="tel:+41616312000" class="block">
+                <span class="block text-[12px] uppercase tracking-[0.08em] text-white/55">Basel</span>
+                <span class="font-medium text-white">+41 61 631 2000</span>
+              </a>
+              <a href="mailto:info@eise.de" class="col-span-2 block font-medium text-white">info@eise.de</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div data-menu-veil class="pointer-events-none fixed inset-0 z-[998] bg-[rgba(18,18,18,0.3)] opacity-0 backdrop-blur-[14px] lg:hidden" aria-hidden="true"></div>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.querySelector<HTMLElement>('[data-mobile-menu]');
+  const veil = document.querySelector<HTMLElement>('[data-menu-veil]');
+  const links = document.querySelectorAll<HTMLElement>('[data-mobile-link]');
+  const top = document.querySelector<HTMLElement>('[data-menu-line="top"]');
+  const middle = document.querySelector<HTMLElement>('[data-menu-line="middle"]');
+  const bottom = document.querySelector<HTMLElement>('[data-menu-line="bottom"]');
+  const desktopMenuParents = document.querySelectorAll<HTMLElement>('[data-menu-parent]');
+  const siteHeader = document.querySelector<HTMLElement>('[data-site-header]');
+  const phoneMedia = window.matchMedia('(max-width: 991.98px)');
+  let open = false;
+  let previousScrollY = window.scrollY;
+  let downwardDistance = 0;
+  let measuredPageHeight = -1;
+  let pinnedRanges: Array<[number, number]> = [];
+
+  const tab = document.querySelector<HTMLElement>('[data-logo-tab]');
+  const eintraege = menu ? Array.from(menu.querySelectorAll<HTMLElement>('[data-menu-reveal]')) : [];
+  const bloecke = menu ? Array.from(menu.querySelectorAll<HTMLElement>('[data-menu-block]')) : [];
+  const ruheModus = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let menuTl: gsap.core.Timeline | null = null;
+
+  // Menü und Logo-Tab sind ein Körper: das Menü hängt oben am Tab. Wird der Tab nach unten gezogen, folgt das Menü.
+  // Ausgangszustand: Einträge hinter ihrer Maske, Blöcke unsichtbar.
+  if (menu) {
+    gsap.set(eintraege, { yPercent: 115 });
+    gsap.set(bloecke, { autoAlpha: 0, y: 22 });
+  }
+
+  /**
+   * Öffnen: Hintergrund blurt ein, die Fläche zieht sich von der unteren rechten Ecke des Logos diagonal auf – Breite und Höhe
+   * laufen mit gleicher Dauer und gleichem Verlauf. Der Menü-Button rückt dabei in die Fläche, die Einträge steigen nacheinander auf.
+   * Schließen: dieselbe Diagonale rückwärts, Breite und Höhe schrumpfen gleichzeitig auf Logo-Größe.
+   */
+  const animiereMenue = (an: boolean) => {
+    if (!menu || !veil || !tab) return;
+    menuTl?.kill();
+    if (an) menu.classList.remove('invisible');
+    document.documentElement.style.overflow = an ? 'hidden' : '';
+    const hoehe = menu.offsetHeight;
+    const versatz = 17; // Einzug des Menüinhalts = Abstand des Logos im Tab
+    const volleBreite = window.innerWidth - 30; // gleiche Breite wie die Menüfläche (15 px Rand links und rechts)
+
+    if (ruheModus) {
+      gsap.set([tab, menu], { width: an ? volleBreite : 158 });
+      gsap.set(tab, { y: an ? hoehe : 0 });
+      gsap.set(veil, { opacity: an ? 1 : 0 });
+      if (toggle) gsap.set(toggle, { x: an ? -versatz : 0, y: an ? 2 : 0 });
+      gsap.set(eintraege, { yPercent: an ? 0 : 115 });
+      gsap.set(bloecke, { autoAlpha: an ? 1 : 0, y: 0 });
+      if (!an) menu.classList.add('invisible');
+      return;
+    }
+
+    if (an) {
+      menuTl = gsap.timeline();
+      menuTl
+        .to(veil, { opacity: 1, duration: 0.7, ease: 'power2.out' }, 0)
+        .to(tab, { y: hoehe, duration: 1.1, ease: 'power4.out' }, 0)
+        .to([tab, menu], { width: volleBreite, duration: 1.1, ease: 'power4.out' }, 0)
+        .to(toggle, { x: -versatz, y: 2, duration: 1.1, ease: 'power4.out' }, 0)
+        .to(eintraege, { yPercent: 0, duration: 0.95, ease: 'expo.out', stagger: 0.05 }, 0.3)
+        .to(bloecke, { autoAlpha: 1, y: 0, duration: 0.85, ease: 'expo.out', stagger: 0.08 }, 0.55);
+    } else {
+      menuTl = gsap.timeline({
+        onComplete: () => {
+          menu.classList.add('invisible');
+        },
+      });
+      menuTl
+        .to(bloecke, { autoAlpha: 0, y: 14, duration: 0.22, ease: 'power1.in' }, 0)
+        .to(eintraege, { yPercent: 115, duration: 0.3, ease: 'power2.in', stagger: { each: 0.02, from: 'end' } }, 0)
+        .to(tab, { y: 0, duration: 0.95, ease: 'power3.inOut' }, 0.12)
+        .to([tab, menu], { width: 158, duration: 0.95, ease: 'power3.inOut' }, 0.12)
+        .to(toggle, { x: 0, y: 0, duration: 0.95, ease: 'power3.inOut' }, 0.12)
+        .to(veil, { opacity: 0, duration: 0.6, ease: 'power1.out' }, 0.35);
+    }
+  };
+
+  const setMenu = (next: boolean) => {
+    if (!toggle || !menu || !veil || !top || !middle || !bottom) return;
+    if (next === open) return;
+    open = next;
+    if (open && siteHeader) {
+      kopfSichtbar = true;
+      gsap.to(siteHeader, { y: 0, duration: 0.2, overwrite: true });
+    }
+    if (siteHeader) siteHeader.dataset.menuOpen = String(open && phoneMedia.matches);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.querySelector('.sr-only')!.textContent = open ? 'Menü schließen' : 'Menü öffnen';
+    menu.setAttribute('aria-hidden', String(!open));
+    menu.classList.toggle('pointer-events-none', !open);
+    veil.classList.toggle('pointer-events-none', !open);
+    animiereMenue(open);
+
+    gsap.to(top, { y: open ? 7 : 0, rotation: open ? -45 : 0, duration: 0.45, ease: 'expo.out', overwrite: true });
+    gsap.to(middle, { scaleX: open ? 0 : 1, transformOrigin: 'center center', duration: 0.3, ease: 'expo.out', overwrite: true });
+    gsap.to(bottom, { y: open ? -7 : 0, rotation: open ? 45 : 0, duration: 0.45, ease: 'expo.out', overwrite: true });
+  };
+  window.addEventListener('resize', () => {
+    if (open && menu && tab) {
+      gsap.set([tab, menu], { width: window.innerWidth - 30 });
+      gsap.set(tab, { y: menu.offsetHeight });
+    }
+  });
+
+  toggle?.addEventListener('click', () => setMenu(!open));
+  veil?.addEventListener('click', () => setMenu(false));
+  // Nur echte Links schließen das Menü; Einträge ohne Ziel lassen es offen.
+  links.forEach((link) => link.addEventListener('click', () => link.hasAttribute('href') && setMenu(false)));
+  document.addEventListener('keydown', (event) => event.key === 'Escape' && open && setMenu(false));
+  window.matchMedia('(min-width: 992px)').addEventListener('change', (event) => event.matches && setMenu(false));
+  phoneMedia.addEventListener('change', () => {
+    if (siteHeader) siteHeader.dataset.menuOpen = String(open && phoneMedia.matches);
+  });
+
+  // Die ganze Kopfzeile samt Logo-Tab fährt als eine Einheit weg: Höhe + Tab-Überstand + Schatten.
+  let kopfSichtbar = true;
+  const versteckHoehe = () => (siteHeader ? siteHeader.offsetHeight + (document.querySelector<HTMLElement>('[data-logo-tab]')?.offsetHeight ?? 0) : 200);
+  const showHeader = () => {
+    if (kopfSichtbar) return;
+    kopfSichtbar = true;
+    if (siteHeader) gsap.to(siteHeader, { y: 0, duration: 0.45, ease: 'power3.out', overwrite: true });
+  };
+  const hideHeader = () => {
+    if (!kopfSichtbar) return;
+    kopfSichtbar = false;
+    if (siteHeader) gsap.to(siteHeader, { y: -(versteckHoehe() + 40), duration: 0.4, ease: 'power3.inOut', overwrite: true });
+  };
+  const measurePinnedRanges = () => {
+    pinnedRanges = [];
+    document.querySelectorAll<HTMLElement>('[data-services-section], [data-projects-section]').forEach((section) => {
+      const sticky = section.firstElementChild as HTMLElement | null;
+      if (!sticky || getComputedStyle(sticky).position !== 'sticky') return;
+      const rect = section.getBoundingClientRect();
+      const start = rect.top + window.scrollY;
+      pinnedRanges.push([start - 40, start + rect.height - window.innerHeight + 40]);
+    });
+    measuredPageHeight = document.documentElement.scrollHeight;
+  };
+  const inPinnedRange = (scrollY: number) => {
+    if (measuredPageHeight !== document.documentElement.scrollHeight) measurePinnedRanges();
+    return pinnedRanges.some(([start, end]) => scrollY >= start && scrollY <= end);
+  };
+  const headerFreeSpace = () => {
+    const heroPin = ScrollTrigger.getById('hero-accordion');
+    return Math.max(240, heroPin && Number.isFinite(heroPin.end) ? Number(heroPin.end) : 0);
+  };
+
+  measurePinnedRanges();
+  window.addEventListener('scroll', () => {
+    if (!siteHeader || open) return;
+    const currentScrollY = window.scrollY;
+    const delta = currentScrollY - previousScrollY;
+    const headerHeight = siteHeader.getBoundingClientRect().height || 80;
+
+    siteHeader.dataset.stuck = String(currentScrollY > headerHeight);
+    if (currentScrollY <= headerHeight || currentScrollY <= headerFreeSpace()) {
+      showHeader();
+      downwardDistance = 0;
+    } else if (inPinnedRange(currentScrollY)) {
+      downwardDistance = 0;
+      hideHeader();
+    } else if (delta > 6) {
+      downwardDistance += delta;
+      if (downwardDistance > 90) hideHeader();
+    } else if (delta < -6) {
+      downwardDistance = 0;
+      showHeader();
+    }
+    previousScrollY = currentScrollY;
+  }, { passive: true });
+  window.addEventListener('resize', measurePinnedRanges);
+
+    const ohneBewegung = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    desktopMenuParents.forEach((parent) => {
+      const mega = parent.querySelector<HTMLElement>('[data-mega-menu]');
+      const zelle = parent.querySelector<HTMLElement>('[data-menu-link]');
+      if (!mega) return;
+      const eintraege = mega.querySelectorAll<HTMLElement>('[data-mega-item]');
+      let sichtbar = false;
+
+      // Geöffnet: Panel läuft von oben auf (Clip-Pfad, Schatten bleibt sichtbar), die Einträge steigen gestaffelt auf.
+      const setMega = (an: boolean) => {
+        if (an === sichtbar) return;
+        sichtbar = an;
+        mega.classList.toggle('pointer-events-none', !an);
+        if (zelle) zelle.dataset.open = String(an);
+        if (ohneBewegung) {
+          gsap.set(mega, { opacity: an ? 1 : 0, clipPath: an ? 'inset(0px -80px -80px -80px)' : 'inset(0px -80px 100% -80px)' });
+          gsap.set(eintraege, { autoAlpha: 1, y: 0 });
+          return;
+        }
+        gsap.killTweensOf([mega, eintraege]);
+        if (an) {
+          gsap.to(mega, { opacity: 1, clipPath: 'inset(0px -80px -80px -80px)', duration: 0.6, ease: 'expo.out' });
+          gsap.fromTo(eintraege, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.55, ease: 'expo.out', stagger: 0.03, delay: 0.08 });
+        } else {
+          gsap.to(mega, { opacity: 0, clipPath: 'inset(0px -80px 100% -80px)', duration: 0.28, ease: 'power2.in' });
+        }
+      };
+
+      parent.addEventListener('mouseenter', () => setMega(true));
+      parent.addEventListener('mouseleave', () => setMega(false));
+      parent.addEventListener('focusin', () => setMega(true));
+      parent.addEventListener('focusout', (event) => {
+        if (!parent.contains(event.relatedTarget as Node | null)) setMega(false);
+      });
+    });
+</script>
+
+
+
+
+

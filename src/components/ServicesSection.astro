@@ -1,0 +1,177 @@
+---
+const services = [
+  ['01', 'Planung & Gestaltung', 'Von der ersten Skizze bis zur Genehmigung: individuelle Entwürfe und realistische Visualisierungen für Ihren Wunschgarten.', '/leistungen/gartenplanung/'],
+  ['02', 'Pools & Schwimmteiche', 'Natur-, Chlor- und Salzwasserpools sowie Schwimmteiche, abgestimmt auf Grundstück und Lebensstil.', '/leistungen/pools/'],
+  ['03', 'Mauern, Treppen & Bodenbeläge', 'Stilvolle Struktur für Ihren Garten: Natursteinmauern, Treppen, Terrassen und Wege aus hochwertigen Materialien.', '/leistungen/mauern-treppen-bodenbelaege/'],
+  ['04', 'Gartenhaus, Sauna & Sichtschutz', 'Rückzugsorte mit Privatsphäre: Gartenhäuser, Saunen und Sichtschutz, die zu Haus und Garten passen.', '/leistungen/gartenhaus-sauna/'],
+  ['05', 'Licht & Ambiente', 'Stimmungsvolles Licht für Sicherheit und Atmosphäre – für Terrasse, Pool, Wege und Pflanzen.', '/leistungen/gartenbeleuchtung/'],
+  ['06', 'Pflanzen, Rasen & Pflege', 'Individuelle Bepflanzung, Rasenflächen und Rundum-sorglos-Pflege für einen Garten, der lebt.', '/leistungen/pflanzen-rasen/'],
+];
+---
+
+<section id="leistungen" data-services-section data-audit-section="services" class="relative h-[2142px] bg-brand-green lg:h-[600svh]">
+  <div class="sticky top-0 flex h-svh flex-col overflow-hidden bg-brand-green text-white">
+    <div class="shrink-0 px-[15px] pb-[59.435px] pt-[56px] lg:px-[30px] lg:pb-[79.205px] lg:pt-[60px] min-[1600px]:px-[35px] min-[1600px]:pb-[182.44px]">
+      <div class="grid items-start gap-4 lg:grid-cols-[24.38%_73.13%] lg:gap-[2.49%] min-[1600px]:grid-cols-[25.95%_69.074%] min-[1600px]:gap-[1.848%]">
+        <p class="text-[15px] uppercase leading-[25.05px]">[Unsere Leistungen]</p>
+        <h2 class="font-display text-[32px] font-normal leading-[1.17] lg:text-[48px]">Leistungen für Gärten mit Anspruch.</h2>
+      </div>
+    </div>
+
+    <div class="border-t border-white/40">
+      <div data-services-track class="flex w-max gap-3 will-change-transform lg:w-auto lg:gap-0">
+        {
+          services.map(([number, title, copy, href]) => (
+            <div data-service-box class="h-[60svh] w-[290.152px] shrink-0 overflow-hidden first:ml-[15px] lg:h-[572.795px] lg:w-[640px] lg:border-r lg:border-white/35 lg:first:ml-0 min-[1600px]:h-[calc(100svh-349.2px)]">
+            <article data-service-card class="relative flex h-full w-full flex-col justify-between overflow-hidden bg-brand-anthrazit px-6 py-[34px] lg:ml-[35px] lg:block lg:w-[570px] lg:p-0 lg:bg-transparent">
+              <div class="contents lg:relative lg:block lg:h-full lg:min-w-[570px] lg:p-0">
+                <div class="contents lg:relative lg:block lg:h-full">
+                  <div data-service-holder class="block lg:absolute lg:left-[35px] lg:top-[58px] lg:flex lg:w-[550px] lg:origin-top-left lg:items-end lg:gap-[30px] lg:will-change-transform">
+                    <span class="block shrink-0 font-sans text-[56px] font-bold leading-none text-brand-yellow lg:text-[96px] lg:leading-[0.86]">{number}</span>
+                    <h3 class="mt-1.5 font-display text-[20px] font-medium uppercase leading-[1.08] lg:mt-0 lg:max-w-[420px] lg:pb-[5px] lg:text-[22px]">{title}</h3>
+                  </div>
+                  <div data-service-bottom class="mt-[26px] border-t border-white/20 pt-4 lg:absolute lg:bottom-[50px] lg:left-[35px] lg:right-[35px] lg:mt-0 lg:w-[500px] lg:pt-[14px] lg:will-change-transform">
+                    <p class="text-[15px] leading-[25.05px] text-white">{copy}</p>
+                    <a href={href} class="group/link mt-8 inline-flex items-center gap-[11px] text-[15px] uppercase leading-[25.05px] text-white lg:gap-4"><span class="link-gelb">
+                      Mehr erfahren</span> <img src="/images/arrow-white.svg" alt="" class="size-6 transition-transform duration-500 group-hover/link:translate-x-1" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+            </div>
+          ))
+        }
+        <article data-service-last class="flex h-[60svh] w-[290.152px] shrink-0 flex-col bg-brand-anthrazit px-6 py-[34px] lg:h-[572.795px] lg:w-[420px] lg:bg-transparent lg:px-[35px] lg:pb-[50px] lg:pt-[60px] lg:opacity-45 min-[1600px]:h-[calc(100svh-349.2px)]">
+          <h3 class="font-display text-[30px] leading-[0.98] lg:text-[61.44px]">
+            <span class="block font-medium lg:leading-[60.2112px]">Sie haben<br class="hidden lg:block" /> einen<br class="hidden lg:block" /> Gartentraum?</span>
+            <span class="block font-light lg:leading-[60.2112px]">Wir setzen<br class="hidden lg:block" /> ihn um.</span>
+          </h3>
+          <div class="mt-auto">
+            <p class="border-t border-white/50 pt-[14px] text-[18px] leading-[1.25] lg:text-[22px]">Persönlich. Verbindlich.<br />Aus einer Hand.</p>
+            <a href="/leistungen/" class="btn-fill btn-line mt-9 inline-flex items-center gap-8 px-[18px] py-[15px] text-[15px] uppercase leading-[25.05px]"><span class="tracking-[0.017em]">Alle Leistungen</span><span class="text-[28px] font-normal leading-[0.6]">→</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="mx-[15px] mt-[18px] h-0.5 shrink-0 bg-white/30 lg:hidden">
+      <span data-services-progress class="block h-full w-[17%] bg-brand-yellow"></span>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const section = document.querySelector<HTMLElement>('[data-services-section]');
+  const track = section?.querySelector<HTMLElement>('[data-services-track]');
+  const boxes = section ? Array.from(section.querySelectorAll<HTMLElement>('[data-service-box]')) : [];
+  const cards = section ? Array.from(section.querySelectorAll<HTMLElement>('[data-service-card]')) : [];
+  const lastCard = section?.querySelector<HTMLElement>('[data-service-last]');
+  const progress = section?.querySelector<HTMLElement>('[data-services-progress]');
+
+  if (section && track && lastCard && boxes.length === 6 && cards.length === 6 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const media = gsap.matchMedia();
+
+    media.add('(max-width: 991.98px)', () => {
+      const tween = gsap.to(track, {
+        x: () => -(track.scrollWidth - window.innerWidth + 30),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.65,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => progress && gsap.set(progress, { width: `${17 + self.progress * 83}%` }),
+        },
+      });
+
+      return () => tween.kill();
+    });
+
+    media.add('(min-width: 992px)', () => {
+      const starts = [0.08, 0.24, 0.4, 0.56, 0.7, 0.82];
+      const duration = 0.18;
+      const openWidth = 640;
+      const lastMinimum = 420;
+
+      const easeProgress = (value: number) => value < 0.5
+        ? 2 * value * value
+        : 1 - Math.pow(-2 * value + 2, 2) / 2;
+
+      const collapsedWidth = () => {
+        const viewportWidth = document.documentElement.clientWidth;
+        return Math.min(170, Math.max(90, (viewportWidth - lastMinimum) / cards.length));
+      };
+
+      const update = (sectionProgress: number) => {
+        const collapsed = collapsedWidth();
+        const titleScale = 0.8 * (collapsed / 170);
+
+        gsap.set(lastCard, {
+          width: Math.max(lastMinimum, window.innerWidth - cards.length * collapsed),
+        });
+
+        cards.forEach((card, index) => {
+          const linearProgress = gsap.utils.clamp(0, 1, (sectionProgress - starts[index]) / duration);
+          const smoothProgress = easeProgress(linearProgress);
+          const box = boxes[index];
+          const holder = card.querySelector<HTMLElement>('[data-service-holder]');
+          const bottom = card.querySelector<HTMLElement>('[data-service-bottom]');
+
+          gsap.set(box, { width: openWidth - (openWidth - collapsed) * smoothProgress });
+
+          if (bottom) {
+            gsap.set(bottom, {
+              opacity: Math.max(0.75, 1 - smoothProgress),
+              xPercent: 100 * smoothProgress,
+              yPercent: -25 * smoothProgress,
+            });
+          }
+
+          if (holder) {
+            gsap.set(holder, {
+              y: Math.max(0, box.getBoundingClientRect().height - 120) * smoothProgress,
+              rotation: -90 * smoothProgress,
+              scale: 1 - (1 - titleScale) * smoothProgress,
+              left: 35 - 35 * (1 - collapsed / 170) * smoothProgress,
+              transformOrigin: '0% 0%',
+            });
+          }
+        });
+
+        const finalProgress = easeProgress(gsap.utils.clamp(0, 1, (sectionProgress - 0.86) / 0.14));
+        gsap.set(lastCard, { opacity: 0.45 + 0.55 * finalProgress });
+      };
+
+      update(0);
+
+      const trigger = ScrollTrigger.create({
+        trigger: section,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 2.2,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => update(self.progress),
+        onRefresh: (self) => update(self.progress),
+      });
+
+      return () => {
+        trigger.kill();
+        gsap.set([...boxes, lastCard], { clearProps: 'width,opacity,transform' });
+        cards.forEach((card) => {
+          gsap.set(card.querySelector('[data-service-holder]'), { clearProps: 'transform,left' });
+          gsap.set(card.querySelector('[data-service-bottom]'), { clearProps: 'transform,opacity' });
+        });
+      };
+    });
+
+    window.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
+  }
+</script>
+

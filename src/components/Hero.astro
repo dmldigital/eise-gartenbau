@@ -1,0 +1,167 @@
+---
+const images = [
+  { src: '/images/hero-pool.webp', alt: 'Moderne Villa mit Pool und gepflegtem Rasen, gestaltet von Eise Garten- und Landschaftsbau' },
+  { src: '/images/hero-schwimmteich.webp', alt: 'Naturnaher Schwimmteich mit Holzdeck und Natursteinmauer' },
+  { src: '/images/hero-natursteintreppe.webp', alt: 'Natursteintreppe zwischen Rosen, Lavendel und Buchskugeln im Hanggarten' },
+];
+---
+
+  <section data-hero class="relative md:h-[300svh]">
+    <div data-hero-sticky class="pt-20 md:sticky md:top-0 lg:pt-[100px]">
+      <div class="mx-auto w-full max-w-[1920px] px-[15px] xl:px-[30px] 2xl:px-[50px]">
+        <div class="flex flex-col-reverse bg-white p-0 md:p-2.5 md:min-h-[calc(100vh-95px)] md:flex-row lg:min-h-[calc(100vh-152px)]">
+          <div data-hero-copy class="flex w-full items-start justify-center px-0 pb-3.5 pt-[26px] md:w-1/2 md:pl-5 md:pr-[30px] md:items-center md:py-[60px] lg:py-20 lg:pl-[30px] lg:pr-10 min-[1920px]:pl-20 min-[1920px]:pr-[90px]">
+            <div class="w-full">
+              <p data-hero-kicker class="mb-4 text-base leading-[1.41] text-brand-copy lg:text-xl min-[1920px]:text-2xl">
+                Garten- und Landschaftsbau seit 1952
+              </p>
+
+              <h1 data-hero-title class="font-display text-[min(36px,calc(12vw_-_7px))] font-medium uppercase leading-[1.18] text-brand-ink min-[480px]:text-[42px] md:text-[min(42px,calc(6vw_-_9px))] lg:text-[min(64px,calc(5.4vw_-_6px))] xl:text-[64px]">
+                Natürlich schöne Gärten.<br /><span class="text-brand-green">Seit drei Generationen.</span>
+              </h1>
+
+              <div class="pt-[34px] md:pt-[60px] lg:pt-[100px]"></div>
+              <div data-hero-rule class="h-[3px] w-16 bg-brand-yellow"></div>
+              <div class="pt-3.5"></div>
+
+              <p data-hero-text class="text-[15px] leading-[1.67] text-brand-copy">
+                <strong class="font-bold text-brand-copy">EISE</strong> plant, baut und pflegt Gärten, Pools und Schwimmteiche zwischen Weil am Rhein, Lörrach und Basel – persönlich betreut von der ersten Skizze bis zur fertigen Außenanlage.
+              </p>
+
+              <div class="pt-10"></div>
+              <div class="w-full">
+                <a data-hero-cta href="#kontakt" class="btn-fill btn-yellow group inline-flex h-[55px] text-[13px] font-medium uppercase leading-[1.1] min-[360px]:text-sm min-[480px]:text-[15px]">
+                  <span class="flex h-full items-center gap-2 px-[14px] min-[360px]:gap-2.5 min-[360px]:px-4 min-[480px]:gap-3 min-[480px]:px-[22px] lg:gap-4 lg:px-9">
+                    <span class="whitespace-nowrap">Gartenberatung vereinbaren</span>
+                    <img src="/images/arrow-white.svg" alt="" class="size-6 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div data-hero-gallery-stage class="w-full md:w-1/2 md:self-stretch">
+            <div data-hero-gallery class="flex h-[420px] w-full gap-1.5 overflow-visible md:h-full md:gap-2.5">
+              {
+                images.map((image, index) => (
+                  <figure
+                    data-hero-panel
+                    class:list={[
+                      'relative m-0 min-w-0 basis-0 overflow-hidden will-change-[flex-grow]',
+                      index === 0 ? 'grow-[12.81] md:grow-[8]' : 'grow',
+                    ]}
+                  >
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      width="1000"
+                      height="1200"
+                      loading={index === 0 ? 'eager' : 'lazy'}
+                      fetchpriority={index === 0 ? 'high' : 'auto'}
+                      class="absolute inset-y-0 left-1/2 h-full w-[var(--hero-image-width,100%)] max-w-none -translate-x-1/2 object-cover md:inset-0 md:left-0 md:w-full md:max-w-full md:translate-x-0"
+                    />
+                    <div data-hero-overlay class:list={['absolute inset-0 bg-[url(\'/images/hero-img-overlay.png\')] bg-cover bg-center md:opacity-55', index === 0 ? 'opacity-30' : 'opacity-55']}></div>
+                  </figure>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const hero = document.querySelector<HTMLElement>('[data-hero]');
+  const gallery = document.querySelector<HTMLElement>('[data-hero-gallery]');
+  const panels = gsap.utils.toArray<HTMLElement>('[data-hero-panel]');
+  const overlays = gsap.utils.toArray<HTMLElement>('[data-hero-overlay]');
+
+  if (hero && gallery && panels.length === 3 && overlays.length === 3 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const media = gsap.matchMedia();
+    media.add('(max-width: 767.98px)', () => {
+      const activeGrow = 12.81;
+      const syncImageWidth = () => {
+        const imageWidth = Math.ceil(((gallery.clientWidth - 12) * activeGrow) / (activeGrow + 2));
+        gallery.style.setProperty('--hero-image-width', `${imageWidth}px`);
+      };
+      const applyProgress = (progress: number) => {
+        const position = progress * (panels.length - 1);
+        panels.forEach((panel, index) => {
+          const weight = Math.max(0, 1 - Math.abs(position - index));
+          gsap.set(panel, { flexGrow: 1 + (activeGrow - 1) * weight });
+          gsap.set(overlays[index], { opacity: 0.55 - 0.25 * weight });
+        });
+      };
+
+      syncImageWidth();
+      applyProgress(0);
+
+      const accordionState = { progress: 0 };
+      const accordionTween = gsap.to(accordionState, {
+        progress: 1,
+        duration: 1,
+        ease: 'none',
+        paused: true,
+        onUpdate: () => applyProgress(accordionState.progress),
+      });
+
+      const trigger = ScrollTrigger.create({
+        id: 'hero-accordion',
+        animation: accordionTween,
+        trigger: hero,
+        start: 'top top',
+        end: '+=560',
+        pin: hero,
+        pinSpacing: true,
+        anticipatePin: 1,
+        scrub: 0.8,
+        invalidateOnRefresh: true,
+        onRefresh: syncImageWidth,
+      });
+
+      window.addEventListener('resize', syncImageWidth);
+      return () => {
+        window.removeEventListener('resize', syncImageWidth);
+        gallery.style.removeProperty('--hero-image-width');
+        trigger.kill();
+        accordionTween.kill();
+      };
+    });
+
+    media.add('(min-width: 768px)', () => createHeroTimeline(8));
+
+    function createHeroTimeline(activeGrow: number) {
+      gsap.set(panels, { flexGrow: 1 });
+      gsap.set(panels[0], { flexGrow: activeGrow });
+      gsap.set(overlays, { opacity: 0.55 });
+
+      const timeline = gsap.timeline({
+        defaults: { ease: 'none' },
+        scrollTrigger: {
+          id: 'hero-accordion',
+          trigger: hero,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.45,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      timeline
+        .to(panels[0], { flexGrow: 1, duration: 0.3 }, 0.1)
+        .to(panels[1], { flexGrow: activeGrow, duration: 0.3 }, 0.1)
+        .to(panels[1], { flexGrow: 1, duration: 0.3 }, 0.55)
+        .to(panels[2], { flexGrow: activeGrow, duration: 0.3 }, 0.55);
+
+      return () => timeline.kill();
+    }
+
+    window.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
+  }
+</script>

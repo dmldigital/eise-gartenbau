@@ -1,0 +1,111 @@
+---
+import { projekte } from '../data/projekte';
+const bild = (id: string) => projekte.find((p) => p.id === id)!.bilder[0];
+const projects = [
+  { image: bild('schwimmteich-schwoerstadt-1'), alt: 'Moderner Badeteich mit Wasserspiel in Schwörstadt', title: 'Schwimmteich Schwörstadt', mobileFirst: 'Schwimmteich', mobileSecond: 'Schwörstadt', category: 'Schwimmteich', place: 'Schwörstadt', service: 'Badeteich mit Wasserspiel' },
+  { image: bild('naturpool-murg-1'), alt: 'Natur-Pool mit Sitzquadern in Murg', title: 'Naturpool Murg', mobileFirst: 'Naturpool', mobileSecond: 'Murg', category: 'Naturpool', place: 'Murg', service: 'Pool mit Sitzquadern' },
+  { image: bild('garten-terrasse-grenzach-1'), alt: 'Garten in Hanglage mit Natursteinmauer und Treppe in Grenzach', title: 'Hanggarten Grenzach', mobileFirst: 'Hanggarten', mobileSecond: 'Grenzach', category: 'Garten & Terrasse', place: 'Grenzach', service: 'Natursteinmauern & Treppen' },
+  { image: bild('firmengarten-weil-am-rhein-1'), alt: 'Firmengarten mit üppiger Bepflanzung in Weil am Rhein', title: 'Firmengarten Weil am Rhein', mobileFirst: 'Firmengarten', mobileSecond: 'Weil am Rhein', category: 'Firmengarten', place: 'Weil am Rhein', service: 'Gestaltung & Bepflanzung' },
+];
+---
+
+{/* Mobil bestimmt der Kartenstapel die Höhe, ab lg gilt wie bisher 300svh. */}
+<section id="referenzen" data-projects-section data-audit-section="projects" class="relative z-[1] bg-brand-paper lg:h-[300svh]">
+  <div class="lg:sticky lg:-top-20 lg:h-[135svh] lg:overflow-hidden">
+    <div data-sonar-zone class="relative overflow-x-clip px-[15px] pb-[26px] pt-[120px] lg:grid lg:grid-cols-[47.51%_1fr_160px] lg:items-start lg:px-[30px] lg:pb-[45.018px]">
+      <div class="relative z-10 flex items-start justify-between gap-4 lg:block">
+        <h2 data-reveal="lines" class="w-[245.429px] shrink-0 font-display text-[36px] font-medium uppercase leading-[1.17] text-brand-ink max-[359px]:w-[210px] max-[359px]:text-[32px] lg:w-auto lg:text-[72px]">Gärten, die<br />bleiben.</h2>
+        <a data-sonar href="/referenzen/" class="relative z-10 flex size-[84px] shrink-0 items-center justify-center btn-fill btn-yellow rounded-full px-2 text-center text-[10px] font-semibold uppercase leading-[1.15] max-[359px]:size-16 max-[359px]:text-[9px] lg:hidden">Alle<br />Referenzen</a>
+      </div>
+      <div class="relative z-10 mt-5 border-t border-[#d1d1cd] pt-[46.429px] lg:ml-[30px] lg:mt-[47px] lg:w-[343.536px] lg:border-t-0 lg:pt-0">
+        <p class="text-[15px] leading-[25.05px] text-[#8c8c88]">Seit 1952 gestalten wir Gärten im Dreiländereck. Alle Bilder auf dieser Seite stammen aus Projekten, die wir selbst realisiert haben.</p>
+      </div>
+      <a data-magnet data-sonar href="/referenzen/" class="relative z-10 btn-fill btn-yellow hidden size-[160px] items-center justify-center rounded-full text-[15px] font-medium uppercase leading-[25.05px] lg:flex">Alle Referenzen</a>
+    </div>
+
+    {/* Mobil: Blockfluss, damit die Karten kleben koennen. Ab lg wie bisher
+        eine waagerechte Spur. */}
+    <div data-projects-track class="block px-[15px] pb-[140px] lg:flex lg:w-max lg:gap-[30px] lg:px-[30px] lg:pb-0 lg:will-change-transform">
+      {
+        projects.map((project, i) => (
+          <article
+            data-projekt-karte
+            class:list={[
+              'sticky top-[11vh] h-[76svh] w-full origin-top overflow-hidden bg-brand-paper lg:static lg:h-auto lg:w-[68.75vw] lg:shrink-0 lg:overflow-visible',
+              ['z-[1]', 'z-[2]', 'z-[3]', 'z-[4]'][i],
+            ]}
+          >
+            {/* Nimmt das Zuruecktreten der Karte auf, ohne sie durchsichtig zu
+                machen — sonst schiene die Karte darunter durch. */}
+            <span data-karte-schleier aria-hidden="true" class="pointer-events-none absolute inset-0 z-10 bg-brand-paper opacity-0 lg:hidden"></span>
+            <img src={project.image} width="1400" height="900" alt={project.alt} class="h-[38svh] w-full object-cover lg:h-[340px]" />
+            <div class="pt-[7px] lg:grid lg:grid-cols-[540px_310px] lg:gap-[30px] lg:pt-[19px]">
+              <div>
+                <h3 class="font-display text-[28px] font-normal leading-[1.41] text-brand-ink lg:text-[36px]"><span class="lg:hidden">{project.mobileFirst}<br />{project.mobileSecond}</span><span class="hidden lg:block">{project.title}</span></h3>
+                <span class="mt-[18px] inline-flex bg-brand-yellow px-[19px] text-[13px] font-semibold leading-[39px] text-brand-ink">{project.category}</span>
+              </div>
+              <dl class="mt-[30px] space-y-[5px] border-t border-[#d6d6d2] pt-[13.429px] text-[15px] leading-[25.05px] text-brand-copy lg:mt-[11px]">
+                <div><dt class="inline">Ort: </dt><dd class="inline font-bold text-brand-ink">{project.place}</dd></div>
+                <div><dt class="inline">Leistung: </dt><dd class="inline font-bold text-brand-ink">{project.service}</dd></div>
+                <div><dt class="inline">Status: </dt><dd class="inline font-bold text-brand-ink">Realisiert</dd></div>
+              </dl>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+  const projectsSection = document.querySelector<HTMLElement>('[data-projects-section]');
+  const projectsTrack = projectsSection?.querySelector<HTMLElement>('[data-projects-track]');
+
+  if (projectsSection && projectsTrack && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const media = gsap.matchMedia();
+
+    // Mobil stapeln sich die Karten: die untenliegende tritt zurueck, waehrend
+    // die naechste darueberschiebt.
+    media.add('(max-width: 991.98px)', () => {
+      const karten = gsap.utils.toArray<HTMLElement>('[data-projekt-karte]');
+      const schleier = karten.map((k) => k.querySelector<HTMLElement>('[data-karte-schleier]'));
+      const tweens = karten.slice(0, -1).flatMap((karte, i) => {
+        const bereich = {
+          trigger: karten[i + 1],
+          start: 'top 92%',
+          end: 'top 24%',
+          scrub: true,
+          invalidateOnRefresh: true,
+        } as const;
+        const rein = [gsap.to(karte, { scale: 0.93, ease: 'none', scrollTrigger: { ...bereich } })];
+        if (schleier[i]) rein.push(gsap.to(schleier[i], { opacity: 0.55, ease: 'none', scrollTrigger: { ...bereich } }));
+        return rein;
+      });
+      return () => {
+        tweens.forEach((t) => t.scrollTrigger?.kill());
+        gsap.set(karten, { clearProps: 'transform' });
+        schleier.forEach((s) => s && gsap.set(s, { clearProps: 'opacity' }));
+      };
+    });
+
+    media.add('(min-width: 992px)', () => {
+      const tween = gsap.to(projectsTrack, {
+        x: () => -(projectsTrack.scrollWidth - window.innerWidth),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: projectsSection,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.65,
+          invalidateOnRefresh: true,
+        },
+      });
+      return () => tween.kill();
+    });
+  }
+</script>
+

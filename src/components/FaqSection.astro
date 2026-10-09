@@ -1,0 +1,51 @@
+---
+import { startseiteFaq as questions } from '../data/startseiteFaq';
+---
+
+<section id="faq" data-audit-section="faq" class="mt-[50px] h-[1216.482px] bg-white px-[15px] lg:h-[676px] lg:px-[30px]">
+  <div class="mx-auto flex h-full max-w-[1920px] flex-col bg-brand-paper p-5 lg:grid lg:grid-cols-2 lg:p-0">
+    <div data-sonar-zone class="relative h-[493px] shrink-0 overflow-hidden px-[22px] pb-10 pt-[50px] lg:mb-5 lg:ml-5 lg:mt-5 lg:h-auto lg:min-h-0 lg:px-[60px] lg:pb-10 lg:pt-[90px]">
+      <img src="/images/faq-bg.webp" width="1400" height="933" alt="Gepflegte Gartenanlage mit geschwungenen Wegen" class="absolute -top-[61.357px] left-0 h-[653px] w-full object-cover lg:-top-[77.387px] lg:h-[796px]" />
+      <div class="relative z-10">
+        <h2 class="max-w-[460px] font-display text-[36px] font-medium leading-[1.17] text-brand-green lg:text-[58px]" data-reveal="lines">Fragen? Wir<br />Klären Das.</h2>
+        <p class="mt-7 max-w-[460px] text-[15px] leading-[25.05px] text-brand-copy">Ein schöner Garten beginnt mit guter Vorbereitung. Hier finden Sie Antworten auf die Fragen, die uns am häufigsten gestellt werden.</p>
+      </div>
+      <a data-magnet data-sonar href="#kontakt" class="absolute bottom-10 right-[22px] z-10 btn-fill btn-yellow flex size-[150px] items-center justify-center rounded-full text-center text-[15px] font-medium uppercase leading-[25.05px] lg:right-10">Frage stellen</a>
+    </div>
+
+    <div data-reveal="up" data-reveal-kinder class="flex h-[683.482px] shrink-0 flex-col py-[60px] lg:mb-5 lg:mr-5 lg:mt-5 lg:h-auto lg:justify-center lg:pb-[35px] lg:pl-[60px] lg:pr-10 lg:pt-[35px]">
+      {
+        questions.map(([question, answer]) => (
+          <div class="border-b border-[#dededa]">
+            <button data-faq-toggle type="button" class="flex w-full items-center justify-between gap-5 py-[22px] text-left font-display text-[22px] font-medium leading-[1.41] text-brand-ink transition-colors duration-300 hover:text-brand-green" aria-expanded="false">
+              <span>{question}</span>
+              <span data-faq-plus class="relative size-6 shrink-0" aria-hidden="true">
+                <span class="absolute left-0 top-1/2 h-0.5 w-full -translate-y-1/2 bg-brand-anthrazit"></span>
+                <span data-faq-plus-vertical class="absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 bg-brand-anthrazit"></span>
+              </span>
+            </button>
+            <div data-faq-answer class="h-0 overflow-hidden">
+              <p class="pb-[26px] text-[15px] leading-[25.05px] text-brand-copy">{answer}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+
+  document.querySelectorAll<HTMLButtonElement>('[data-faq-toggle]').forEach((button) => {
+    const answer = button.nextElementSibling as HTMLElement | null;
+    const plus = button.querySelector<HTMLElement>('[data-faq-plus-vertical]');
+    if (!answer || !plus) return;
+    button.addEventListener('click', () => {
+      const next = button.getAttribute('aria-expanded') !== 'true';
+      button.setAttribute('aria-expanded', String(next));
+      gsap.to(answer, { height: next ? 'auto' : 0, duration: 0.25, ease: 'power1.inOut' });
+      gsap.to(plus, { rotation: next ? 90 : 0, duration: 0.25, ease: 'power1.inOut' });
+    });
+  });
+</script>

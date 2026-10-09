@@ -1,0 +1,65 @@
+---
+const articles = [
+  { number: '01', type: 'Ratgeber', image: '/images/wissen-gartentipps.webp', alt: 'Blühende Sonnenhüte im Staudenbeet', tag: 'Gartentipps / Pflege', title: 'Gartentipps: Praktische Hinweise für einen gesunden Garten', href: '/gartentipps/' },
+  { number: '02', type: 'Stimmen', image: '/images/wissen-kundenstimmen.webp', alt: 'Terrasse mit Pool und Sonnenschirmen in einem von Eise gestalteten Garten', tag: 'Bewertungen / Erfahrungen', title: 'Kundenstimmen: Das sagen unsere Auftraggeber', href: '/kundenstimmen/' },
+  { number: '03', type: 'Baustelle', image: '/images/wissen-entstehung.webp', alt: 'Minibagger beim Aushub einer Poolbaugrube', tag: 'Einblick / Projekte', title: 'Hier entsteht ein Garten: Von der Baugrube zur Wohlfühloase', href: '/referenzen/entstehung-eines-gartens/' },
+];
+---
+
+{/* Mobil richtet sich die Höhe nach dem Inhalt — die feste Höhe liess rund
+    250px leere Fläche stehen. Ab lg unverändert. */}
+<section id="wissen" data-audit-section="knowledge" class="relative bg-white px-[15px] py-[100px] lg:h-[905.688px] lg:px-[30px] lg:py-[110px] 2xl:h-auto 2xl:px-[50px] 2xl:pb-[90px]">
+  <div class="mx-auto max-w-[1550px]">
+    <div class="lg:flex lg:items-end lg:justify-between">
+      <div class="2xl:w-[58.844%]">
+        <p class="text-[15px] uppercase leading-[25.05px] text-brand-copy">[Aus dem Betrieb]</p>
+        <h2 data-reveal="lines" class="mt-[22px] font-display text-[36px] font-medium uppercase leading-[1.17] text-brand-ink lg:mt-3 lg:text-[72px] 2xl:text-[90px]">Wissen & Einblicke</h2>
+      </div>
+      <a href="/ueber-uns/" class="mt-[30px] inline-flex items-center gap-[15px] text-[15px] uppercase leading-[25.05px] text-brand-ink lg:mb-[19.55px] lg:mt-0 lg:gap-5 2xl:mb-[15px]"><span class="inline-block w-[109.35px] origin-left scale-x-[0.96] whitespace-nowrap lg:w-[104.35px] lg:scale-x-[0.9165]">Mehr über uns</span><img src="/images/arrow-dark.svg" alt="" class="h-3 w-[29px]" /></a>
+    </div>
+
+    <div class="mt-[53px] border-t border-[#d5d5d1] pt-[34.34px] lg:mt-[52.47px] lg:pt-5">
+      <div data-reveal-kinder data-knowledge-track class="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-8 [scrollbar-width:none] lg:grid lg:grid-cols-3 lg:gap-6 lg:overflow-visible lg:pb-0 2xl:pb-[34px]">
+        {
+          articles.map((article) => (
+            <a href={article.href} class="group block w-[283.25px] shrink-0 snap-start lg:w-auto">
+              <div class="relative h-[283.25px] overflow-hidden lg:h-[385.714px] 2xl:aspect-square 2xl:h-auto">
+                <img src={article.image} width="900" height="1000" alt={article.alt} class="h-full w-full object-cover transition-transform duration-500 hover:scale-105" />
+                <div class="absolute right-1 top-1 bg-brand-yellow px-3 py-4 text-center text-brand-ink lg:right-1.5 lg:top-1.5">
+                  <span class="block font-display text-[38px] leading-none">{article.number}</span>
+                  <span class="mt-1 block text-[15px]">{article.type}</span>
+                </div>
+                <div class="absolute inset-x-1 bottom-1 bg-brand-anthrazit px-3 py-3 text-center text-[12px] uppercase text-[#8f8f8f]">{article.tag}</div>
+              </div>
+              <h3 class="mt-6 font-grotesk text-[20px] font-medium leading-[1.41] text-brand-ink lg:block lg:text-[24px]">{article.title}</h3>
+            </a>
+          ))
+        }
+      </div>
+
+      {/* Zeigt mobil an, dass die Beiträge seitlich weitergehen — wie in der
+          Leistungssektion. */}
+      <div class="mt-1 h-0.5 bg-brand-ink/15 lg:hidden">
+        <span data-knowledge-progress class="block h-full w-1/3 bg-brand-yellow transition-[width] duration-150 ease-out"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const track = document.querySelector<HTMLElement>('[data-knowledge-track]');
+  const balken = document.querySelector<HTMLElement>('[data-knowledge-progress]');
+
+  if (track && balken) {
+    const aktualisiere = () => {
+      const weg = track.scrollWidth - track.clientWidth;
+      const anteil = weg > 0 ? track.scrollLeft / weg : 0;
+      // Startbreite entspricht dem sichtbaren Anteil, waechst bis 100%
+      const sichtbar = track.clientWidth / track.scrollWidth;
+      balken.style.width = `${(sichtbar + (1 - sichtbar) * anteil) * 100}%`;
+    };
+    aktualisiere();
+    track.addEventListener('scroll', aktualisiere, { passive: true });
+    window.addEventListener('resize', aktualisiere);
+  }
+</script>

@@ -1,0 +1,183 @@
+@import "tailwindcss";
+@import "@fontsource/dm-sans/latin-400.css";
+@import "@fontsource/dm-sans/latin-500.css";
+@import "@fontsource/dm-sans/latin-700.css";
+@import "@fontsource/outfit/latin-400.css";
+@import "@fontsource/outfit/latin-500.css";
+@import "@fontsource/space-grotesk/latin-500.css";
+@import "@fontsource/space-grotesk/latin-600.css";
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1440px;
+
+  --color-brand-green: #23862f;
+  --color-brand-ink: #121212;
+  --color-brand-anthrazit: #353535;
+  --color-brand-paper: #ffffff;
+  --color-brand-line: #cfcfca;
+  --color-brand-copy: #555555;
+  --color-brand-teal: #14532b;
+  --color-brand-yellow: #fed715;
+
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-grotesk: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ---------- Premium-Grundlagen: Auswahl, Fokus, Buttons ---------- */
+:root {
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+::selection {
+  background: var(--color-brand-yellow);
+  color: var(--color-brand-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-green);
+  outline-offset: 3px;
+}
+
+@layer components {
+/* Button mit Füllung, die von unten einfährt (21st.dev-Stil: weich, kein Springen). */
+.btn-fill {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition: color 0.55s var(--ease-premium), border-color 0.55s var(--ease-premium);
+}
+.btn-fill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--fill);
+  transform: translateY(102%);
+  transition: transform 0.65s var(--ease-premium);
+}
+.btn-fill:hover::before,
+.btn-fill:focus-visible::before {
+  transform: translateY(0);
+}
+.btn-fill img {
+  transition: filter 0.4s var(--ease-premium), transform 0.55s var(--ease-premium);
+}
+.btn-fill:hover img {
+  transform: translateX(5px);
+}
+
+/* Gelb mit dunkler Schrift – Hauptaktion */
+.btn-yellow {
+  --fill: var(--color-brand-anthrazit);
+  background: var(--color-brand-yellow);
+  color: var(--color-brand-ink);
+}
+.btn-yellow img { filter: brightness(0); }
+.btn-yellow:hover,
+.btn-yellow:focus-visible { color: #fff; }
+.btn-yellow:hover img,
+.btn-yellow:focus-visible img { filter: none; }
+
+/* Dunkel mit weißer Schrift – wird beim Überfahren gelb */
+.btn-dark {
+  --fill: var(--color-brand-yellow);
+  background: var(--color-brand-anthrazit);
+  color: #fff;
+}
+.btn-dark:hover,
+.btn-dark:focus-visible { color: var(--color-brand-ink); }
+.btn-dark:hover img,
+.btn-dark:focus-visible img { filter: brightness(0); }
+
+/* Umriss-Button */
+.btn-line {
+  --fill: var(--color-brand-yellow);
+  border: 1px solid currentColor;
+}
+.btn-line:hover,
+.btn-line:focus-visible { color: var(--color-brand-ink); border-color: var(--color-brand-yellow); }
+.btn-line:hover img,
+.btn-line:focus-visible img { filter: brightness(0); }
+
+/* ---------- Kopfzeile: Menüfelder ---------- */
+/* Füllung fährt von unten ein, die Buchstaben rollen gestaffelt nach oben und die zweite Zeile rückt nach. */
+.nav-cell { --cell-fill: var(--color-brand-yellow); }
+.nav-cta { --cell-fill: var(--color-brand-green); }
+.nav-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--cell-fill);
+  transform: translateY(101%);
+  transition: transform 0.7s var(--ease-premium);
+}
+.nav-cell:hover .nav-fill,
+.nav-cell:focus-visible .nav-fill,
+.nav-cell[data-open='true'] .nav-fill { transform: translateY(0); }
+.nav-letter {
+  display: inline-block;
+  transition: transform 0.6s var(--ease-premium);
+  transition-delay: calc(var(--i) * 14ms);
+}
+.nav-cell:hover .nav-letter,
+.nav-cell:focus-visible .nav-letter,
+.nav-cell[data-open='true'] .nav-letter { transform: translateY(-100%); }
+
+/* Mega-Menü-Einträge: rücken beim Überfahren ein Stück ein, gelber Strich läuft davor ein */
+.mega-link {
+  position: relative;
+  display: block;
+  padding: 2px 0;
+  font-size: 15px;
+  line-height: 25.05px;
+  color: #666;
+  transition: color 0.35s var(--ease-premium), transform 0.5s var(--ease-premium);
+}
+.mega-link::before {
+  content: '';
+  position: absolute;
+  left: -16px;
+  top: 50%;
+  width: 0;
+  height: 3px;
+  background: var(--color-brand-yellow);
+  transition: width 0.5s var(--ease-premium);
+}
+.mega-link:hover,
+.mega-link:focus-visible { color: var(--color-brand-ink); transform: translateX(10px); }
+.mega-link:hover::before,
+.mega-link:focus-visible::before { width: 10px; }
+
+/* Kontakte und Icons in der grünen Hilfsleiste */
+.kopf-icon {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.16);
+  transition: background-color 0.4s var(--ease-premium), color 0.4s var(--ease-premium), transform 0.5s var(--ease-premium);
+}
+.kopf-icon:hover,
+.kopf-kontakt:hover .kopf-icon { background: #fff; color: var(--color-brand-green); transform: scale(1.08); }
+.kopf-kontakt:hover .kopf-icon img { filter: none; }
+.kopf-kontakt img { transition: filter 0.3s; }
+.kopf-kontakt { transition: color 0.3s; }
+
+/* Textlink mit gelber Unterstreichung, die einfährt */
+.link-gelb {
+  background: linear-gradient(var(--color-brand-yellow), var(--color-brand-yellow)) left bottom / 100% 3px no-repeat;
+  padding-bottom: 2px;
+  transition: background-size 0.5s var(--ease-premium), color 0.3s;
+}
+.link-gelb:hover { background-size: 100% 100%; color: var(--color-brand-ink); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-fill::before, .btn-fill, .btn-fill img, .link-gelb { transition: none; }
+}
