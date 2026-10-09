@@ -51,6 +51,7 @@ function bauen(button: HTMLElement): Sonar | null {
   const ringe = Array.from({ length: RINGE }, () => {
     const c = document.createElementNS(NS, 'circle');
     c.setAttribute('fill', 'none');
+    c.setAttribute('r', '0');
     c.setAttribute('stroke', farbe);
     c.setAttribute('stroke-width', '1.8');
     c.style.opacity = '0';
@@ -93,6 +94,7 @@ function messen(s: Sonar) {
   s.ringe.forEach((ring, i) => {
     ring.setAttribute('cx', String(m));
     ring.setAttribute('cy', String(m));
+    ring.setAttribute('r', String(r0 + 1)); // Startradius, bevor die Animation übernimmt
     if (reduziert()) {
       ring.setAttribute('r', String(r0 + 8 + i * 9));
       ring.style.opacity = String(0.3 - i * 0.08);
