@@ -1,0 +1,6 @@
+---
+// Link mit Text-Roll beim Überfahren (Klasse .roll in global.css)
+interface Props { href: string; text: string; class?: string }
+const { href, text, class: klasse = '' } = Astro.props;
+---
+<a href={href} class:list={['roll', klasse]}><span>{text}</span><span aria-hidden="true">{text}</span></a>

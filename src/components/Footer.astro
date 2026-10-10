@@ -1,66 +1,63 @@
-<footer data-audit-section="footer" class="relative overflow-hidden bg-brand-anthrazit px-[15px] pt-[88px] lg:h-auto lg:px-[30px] lg:pb-[50px] 2xl:px-[50px]">
-  <img src="/images/footer-bg.webp" width="1800" height="1200" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover" />
-  {/* Schriftzug über die volle Inhaltsbreite; die Schriftgröße wird im Skript exakt eingepasst. */}
-  <div data-wortmarke aria-hidden="true" class="relative z-[1] mb-[88px] overflow-hidden whitespace-nowrap font-grotesk font-semibold uppercase leading-[0.86] tracking-[0.01em] text-brand-green/75">
-    <span data-wortmarke-text class="inline-block text-[40px]">Eise Gartenbau</span>
-  </div>
+---
+// Fußzeile: Fläche in rechteckige Zellen mit feinen Linien geteilt, eine gelbe Kontaktzelle, die beim Überfahren grün füllt.
+import FussLink from './FussLink.astro';
+import { navigation, unternehmen, rechtliches, social, claim, weil, basel } from '../data/footer';
 
-  <div class="relative mx-auto max-w-[1920px] bg-brand-anthrazit px-[30px] pb-[60px] pt-[70px] lg:min-h-[425.616px] lg:px-10 lg:py-[70px] 2xl:px-[50px] min-[1600px]:px-[60px]">
-    <div class="grid gap-[52px] lg:grid-cols-[minmax(0,1fr)_150px_150px_160.429px] lg:gap-[30px] 2xl:gap-[50px]">
-      <div>
+const kopf = 'mb-6 flex items-center gap-2.5 text-[13px] font-bold uppercase tracking-[0.08em]';
+const zelle = 'bg-brand-anthrazit p-6 lg:p-9';
+---
+
+<footer data-audit-section="footer" class="bg-brand-anthrazit text-white">
+  <div class="mx-auto max-w-[1920px] px-[15px] py-[15px] lg:px-[30px] lg:py-[30px] 2xl:px-[50px]">
+    <div class="grid grid-cols-2 gap-px border border-white/15 bg-white/15 lg:grid-cols-4">
+      <div class:list={[zelle, 'col-span-2 flex min-h-[270px] flex-col justify-between gap-12']}>
         <img src="/images/eise-logo.svg" width="682" height="252" alt="Eise – natürlich schöne Gärten" class="block h-auto w-[170px] lg:w-[200px]" />
-        <div class="mt-[22px] h-px w-[215.429px] bg-white/25 lg:w-[280px]"></div>
-        <p class="mt-[26px] max-w-[380px] text-[15px] leading-[25.05px] text-white 2xl:max-w-[420px]">Garten- und Landschaftsbau seit 1952. Planung, Pools, Schwimmteiche, Terrassen und Pflege im Dreiländereck – Weil am Rhein, Lörrach und Basel.</p>
-        <p class="mt-[46px] max-w-[330px] text-[15px] uppercase leading-[25.05px] text-white 2xl:max-w-none">Eise · Familienbetrieb seit 1952</p>
+        <div>
+          <p class="max-w-[430px] text-[15px] leading-[25.05px] text-white/90">{claim}</p>
+          <p class="mt-8 text-[13px] uppercase tracking-[0.08em] text-white/55">Familienbetrieb seit 1952</p>
+        </div>
       </div>
 
-      <div>
-        <h2 class="border-b border-white/35 pb-[3px] font-sans text-[17px] font-bold uppercase leading-[28.39px] text-white">Navigation</h2>
-        <nav class="mt-8 grid gap-[10px] pb-[10px] text-[15px] leading-[25.05px] text-white [&_a]:w-fit [&_a]:decoration-brand-yellow [&_a]:decoration-[3px] [&_a]:underline-offset-4 [&_a:hover]:underline">
-          <a href="/#seitenanfang">Home</a><a href="/leistungen/">Leistungen</a><a href="/referenzen/">Referenzen</a><a href="/kundenstimmen/">Kundenstimmen</a><a href="/gartentipps/">Gartentipps</a><a href="/karriere/">Karriere</a><a href="/kontakt/">Kontakt</a>
-        </nav>
-      </div>
+      <nav aria-label="Navigation" class={zelle}>
+        <h2 class={kopf}><span class="size-2 bg-brand-yellow"></span>Navigation</h2>
+        <ul class="grid gap-2 text-[15px] leading-[25.05px]">
+          {navigation.map(([text, href]) => <li><FussLink href={href} text={text} /></li>)}
+        </ul>
+      </nav>
 
-      <div>
-        <h2 class="border-b border-white/35 pb-[3px] font-sans text-[17px] font-bold uppercase leading-[28.39px] text-white">Eise</h2>
-        <nav class="mt-8 grid gap-[10px] pb-[10px] text-[15px] leading-[25.05px] text-white [&_a]:w-fit [&_a]:decoration-brand-yellow [&_a]:decoration-[3px] [&_a]:underline-offset-4 [&_a:hover]:underline">
-          <a href="/ueber-uns/">Über uns</a><a href="/ueber-uns/team/">Team</a><a href="/ueber-uns/geschichte-philosophie/">Geschichte</a><a href="/ueber-uns/partner/">Partner</a><a href="/ueber-uns/engagement/">Engagement</a>
-        </nav>
-      </div>
+      <nav aria-label="Unternehmen" class={zelle}>
+        <h2 class={kopf}><span class="size-2 bg-brand-yellow"></span>Eise</h2>
+        <ul class="grid gap-2 text-[15px] leading-[25.05px]">
+          {unternehmen.map(([text, href]) => <li><FussLink href={href} text={text} /></li>)}
+        </ul>
+      </nav>
 
-      <div>
-        <h2 class="border-b border-white/35 pb-[3px] font-sans text-[17px] font-bold uppercase leading-[28.39px] text-white">Kontakt</h2>
-        <div class="mt-8 grid gap-[10px] pb-[30px] text-[15px] leading-[25.05px] text-white [&_a]:w-fit [&_a]:decoration-brand-yellow [&_a]:decoration-[3px] [&_a]:underline-offset-4 [&_a:hover]:underline">
-          <a href="tel:+497621964220">07621 964 220</a><a href="mailto:info@eise.de">info@eise.de</a><a href="/kontakt/">Anfahrt</a>
+      {[weil, basel].map((o) => (
+        <div class:list={[zelle, 'col-span-2 min-h-[220px] lg:col-span-1']}>
+          <h2 class={kopf}><span class="size-2 bg-brand-yellow"></span>{o.name}</h2>
+          <address class="text-[15px] not-italic leading-[25.05px] text-white/85">{o.strasse}<br />{o.plz} {o.ort}</address>
+          <p class="mt-5 text-[15px] leading-[25.05px]"><FussLink href={`tel:${o.telefonTel}`} text={o.telefon} /></p>
+        </div>
+      ))}
+
+      <a href="/kontakt/" class="group relative col-span-2 flex min-h-[220px] flex-col justify-between gap-10 overflow-hidden bg-brand-yellow p-6 text-brand-ink lg:p-9">
+        <span aria-hidden="true" class="absolute inset-0 translate-y-full bg-brand-green transition-transform duration-700 [transition-timing-function:var(--ease-premium)] group-hover:translate-y-0"></span>
+        <span class="relative text-[13px] font-bold uppercase tracking-[0.08em] transition-colors duration-500 group-hover:text-white">Gartenberatung</span>
+        <span class="relative font-display text-[28px] font-medium leading-[1.1] transition-colors duration-500 group-hover:text-white lg:text-[38px]">Ihr Garten beginnt<br />mit einem Gespräch.</span>
+      </a>
+
+      <div class:list={[zelle, 'col-span-2 flex flex-wrap items-center justify-between gap-x-8 gap-y-4 !py-5 text-[13px] leading-[1.6] lg:col-span-4 lg:!py-6']}>
+        <p class="text-white/80">© Jürgen Eise Garten- und Landschaftsbau</p>
+        <div class="flex flex-wrap items-center gap-x-8 gap-y-3 uppercase">
+          <nav aria-label="Rechtliches" class="flex flex-wrap gap-x-6 gap-y-1">
+            {rechtliches.map(([text, href]) => <FussLink href={href} text={text} />)}
+          </nav>
+          <span aria-hidden="true" class="hidden h-4 w-px bg-white/25 sm:block"></span>
+          <div class="flex gap-x-6">
+            {social.map(([text, href]) => <FussLink href={href} text={text} />)}
+          </div>
         </div>
       </div>
     </div>
-    <div class="mt-[52px] flex flex-wrap items-center justify-between gap-x-8 gap-y-3 border-t border-white/20 pt-5 text-[13px] leading-[1.6] text-white lg:mt-12">
-      <p>© Jürgen Eise Garten- und Landschaftsbau</p>
-      <nav aria-label="Rechtliches" class="flex flex-wrap gap-x-6 gap-y-1 uppercase">
-        <a href="/impressum/">Impressum</a><a href="/datenschutz/">Datenschutz</a><a href="/barrierefreiheit/">Barrierefreiheit</a>
-      </nav>
-    </div>
   </div>
 </footer>
-
-<script>
-  // Schriftzug exakt auf die Breite des Footer-Inhalts bringen (bei Schriftladen und Größenänderung neu).
-  const rahmen = document.querySelector<HTMLElement>('[data-wortmarke]');
-  const text = rahmen?.querySelector<HTMLElement>('[data-wortmarke-text]');
-  if (rahmen && text) {
-    const einpassen = () => {
-      text.style.fontSize = '100px';
-      const breite100 = text.getBoundingClientRect().width;
-      if (!breite100) return;
-      text.style.fontSize = `${(rahmen.clientWidth / breite100) * 100}px`;
-    };
-    einpassen();
-    document.fonts?.ready.then(einpassen);
-    let wartet = 0;
-    window.addEventListener('resize', () => {
-      window.clearTimeout(wartet);
-      wartet = window.setTimeout(einpassen, 120);
-    });
-  }
-</script>

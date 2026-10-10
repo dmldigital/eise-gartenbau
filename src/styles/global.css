@@ -7,6 +7,7 @@
 @import "@fontsource/space-grotesk/latin-500.css";
 @import "@fontsource/space-grotesk/latin-600.css";
 
+
 @theme {
   --breakpoint-*: initial;
   --breakpoint-sm: 640px;
@@ -163,11 +164,26 @@
   background: rgba(255, 255, 255, 0.16);
   transition: background-color 0.4s var(--ease-premium), color 0.4s var(--ease-premium), transform 0.5s var(--ease-premium);
 }
-.kopf-icon:hover,
-.kopf-kontakt:hover .kopf-icon { background: #fff; color: var(--color-brand-green); transform: scale(1.08); }
-.kopf-kontakt:hover .kopf-icon img { filter: none; }
-.kopf-kontakt img { transition: filter 0.3s; }
-.kopf-kontakt { transition: color 0.3s; }
+/* Social-Symbole: runder Hintergrund, beim Überfahren weiß mit grünem Symbol */
+.kopf-icon:hover { background: #fff; color: var(--color-brand-green); transform: scale(1.08); }
+
+/* Telefon und E-Mail: kein Hintergrund. Symbol und Text laufen beim Überfahren gemeinsam nach Gelb, das Symbol wächst leicht. */
+.kopf-kontakt { transition: color 0.35s var(--ease-premium); }
+.kopf-kontakt:hover,
+.kopf-kontakt:focus-visible { color: var(--color-brand-yellow); }
+.kopf-glyph {
+  width: 14px;
+  height: 14px;
+  background: currentColor;
+  mask: var(--glyph) center / contain no-repeat;
+  -webkit-mask: var(--glyph) center / contain no-repeat;
+  transition: transform 0.5s var(--ease-premium);
+}
+.kopf-kontakt:hover .kopf-glyph,
+.kopf-kontakt:focus-visible .kopf-glyph { transform: scale(1.18); }
+.kopf-ort { color: rgb(255 255 255 / 0.7); transition: color 0.35s var(--ease-premium); }
+.kopf-kontakt:hover .kopf-ort,
+.kopf-kontakt:focus-visible .kopf-ort { color: inherit; }
 
 /* Textlink mit gelber Unterstreichung, die einfährt */
 .link-gelb {
@@ -176,8 +192,16 @@
   transition: background-size 0.5s var(--ease-premium), color 0.3s;
 }
 .link-gelb:hover { background-size: 100% 100%; color: var(--color-brand-ink); }
+
+/* Fußzeile: Link, dessen Text beim Überfahren nach oben wegrollt und gelb (oder in --roll) nachrollt */
+.roll { display: inline-block; height: 1lh; overflow: hidden; vertical-align: top; }
+.roll > span { display: block; transition: transform 0.55s var(--ease-premium); }
+.roll > span + span { color: var(--roll, var(--color-brand-yellow)); }
+.roll:hover > span,
+.roll:focus-visible > span { transform: translateY(-100%); }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .btn-fill::before, .btn-fill, .btn-fill img, .link-gelb { transition: none; }
+  .btn-fill::before, .btn-fill, .btn-fill img, .link-gelb, .roll > span { transition: none; }
 }

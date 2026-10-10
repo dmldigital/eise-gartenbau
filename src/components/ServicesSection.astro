@@ -1,38 +1,44 @@
 ---
+// Der senkrechte Strich im Titel ist der Zeilenumbruch für die Handy-Ansicht (Titel stehen dort zweizeilig hochkant).
 const services = [
-  ['01', 'Planung & Gestaltung', 'Von der ersten Skizze bis zur Genehmigung: individuelle Entwürfe und realistische Visualisierungen für Ihren Wunschgarten.', '/leistungen/gartenplanung/'],
-  ['02', 'Pools & Schwimmteiche', 'Natur-, Chlor- und Salzwasserpools sowie Schwimmteiche, abgestimmt auf Grundstück und Lebensstil.', '/leistungen/pools/'],
-  ['03', 'Mauern, Treppen & Bodenbeläge', 'Stilvolle Struktur für Ihren Garten: Natursteinmauern, Treppen, Terrassen und Wege aus hochwertigen Materialien.', '/leistungen/mauern-treppen-bodenbelaege/'],
-  ['04', 'Gartenhaus, Sauna & Sichtschutz', 'Rückzugsorte mit Privatsphäre: Gartenhäuser, Saunen und Sichtschutz, die zu Haus und Garten passen.', '/leistungen/gartenhaus-sauna/'],
-  ['05', 'Licht & Ambiente', 'Stimmungsvolles Licht für Sicherheit und Atmosphäre – für Terrasse, Pool, Wege und Pflanzen.', '/leistungen/gartenbeleuchtung/'],
-  ['06', 'Pflanzen, Rasen & Pflege', 'Individuelle Bepflanzung, Rasenflächen und Rundum-sorglos-Pflege für einen Garten, der lebt.', '/leistungen/pflanzen-rasen/'],
+  ['01', 'Planung &|Gestaltung', 'Von der ersten Skizze bis zur Genehmigung: individuelle Entwürfe und realistische Visualisierungen für Ihren Wunschgarten.', '/leistungen/gartenplanung/'],
+  ['02', 'Pools &|Schwimmteiche', 'Natur-, Chlor- und Salzwasserpools sowie Schwimmteiche, abgestimmt auf Grundstück und Lebensstil.', '/leistungen/pools/'],
+  ['03', 'Mauern, Treppen|& Bodenbeläge', 'Stilvolle Struktur für Ihren Garten: Natursteinmauern, Treppen, Terrassen und Wege aus hochwertigen Materialien.', '/leistungen/mauern-treppen-bodenbelaege/'],
+  ['04', 'Gartenhaus, Sauna|& Sichtschutz', 'Rückzugsorte mit Privatsphäre: Gartenhäuser, Saunen und Sichtschutz, die zu Haus und Garten passen.', '/leistungen/gartenhaus-sauna/'],
+  ['05', 'Licht &|Ambiente', 'Stimmungsvolles Licht für Sicherheit und Atmosphäre – für Terrasse, Pool, Wege und Pflanzen.', '/leistungen/gartenbeleuchtung/'],
+  ['06', 'Pflanzen, Rasen|& Pflege', 'Individuelle Bepflanzung, Rasenflächen und Rundum-sorglos-Pflege für einen Garten, der lebt.', '/leistungen/pflanzen-rasen/'],
 ];
 ---
 
-<section id="leistungen" data-services-section data-audit-section="services" class="relative h-[2142px] bg-brand-green lg:h-[600svh]">
-  <div class="sticky top-0 flex h-svh flex-col overflow-hidden bg-brand-green text-white">
-    <div class="shrink-0 px-[15px] pb-[59.435px] pt-[56px] lg:px-[30px] lg:pb-[79.205px] lg:pt-[60px] min-[1600px]:px-[35px] min-[1600px]:pb-[182.44px]">
-      <div class="grid items-start gap-4 lg:grid-cols-[24.38%_73.13%] lg:gap-[2.49%] min-[1600px]:grid-cols-[25.95%_69.074%] min-[1600px]:gap-[1.848%]">
+<section id="leistungen" data-services-section data-audit-section="services" class="relative h-[430svh] bg-brand-green max-lg:motion-reduce:h-auto lg:h-[600svh]">
+  <div class="sticky top-0 flex h-svh flex-col overflow-hidden bg-brand-green text-white max-lg:motion-reduce:static max-lg:motion-reduce:h-auto">
+    <div class="shrink-0 px-[15px] pb-5 pt-8 lg:px-[30px] lg:pb-[79.205px] lg:pt-[60px] min-[1600px]:px-[35px] min-[1600px]:pb-[182.44px]">
+      <div class="grid items-start gap-3 lg:grid-cols-[24.38%_73.13%] lg:gap-[2.49%] min-[1600px]:grid-cols-[25.95%_69.074%] min-[1600px]:gap-[1.848%]">
         <p class="text-[15px] uppercase leading-[25.05px]">[Unsere Leistungen]</p>
-        <h2 class="font-display text-[32px] font-normal leading-[1.17] lg:text-[48px]">Leistungen für Gärten mit Anspruch.</h2>
+        <h2 class="font-display text-[26px] font-normal leading-[1.15] lg:text-[48px]">Leistungen für Gärten mit Anspruch.</h2>
       </div>
     </div>
 
-    <div class="border-t border-white/40">
-      <div data-services-track class="flex w-max gap-3 will-change-transform lg:w-auto lg:gap-0">
+    <div data-services-stage class="min-h-0 flex-1 overflow-hidden border-t border-white/40 max-lg:motion-reduce:overflow-visible lg:flex-none lg:overflow-visible">
+      <div data-services-track class="flex flex-col px-[15px] will-change-transform lg:w-auto lg:flex-row lg:gap-0 lg:px-0">
         {
-          services.map(([number, title, copy, href]) => (
-            <div data-service-box class="h-[60svh] w-[290.152px] shrink-0 overflow-hidden first:ml-[15px] lg:h-[572.795px] lg:w-[640px] lg:border-r lg:border-white/35 lg:first:ml-0 min-[1600px]:h-[calc(100svh-349.2px)]">
-            <article data-service-card class="relative flex h-full w-full flex-col justify-between overflow-hidden bg-brand-anthrazit px-6 py-[34px] lg:ml-[35px] lg:block lg:w-[570px] lg:p-0 lg:bg-transparent">
+          services.map(([number, title, copy, href]) => {
+            const [zeile1, zeile2] = title.split('|');
+            return (
+            <div data-service-box class="h-[330px] w-full shrink-0 overflow-hidden border-b-[3px] border-brand-green lg:h-[572.795px] lg:w-[640px] lg:border-b-0 lg:border-r lg:border-white/35 min-[1600px]:h-[calc(100svh-349.2px)]">
+            <article data-service-card class="relative block h-full w-full overflow-hidden bg-brand-anthrazit lg:ml-[35px] lg:w-[570px] lg:bg-transparent">
               <div class="contents lg:relative lg:block lg:h-full lg:min-w-[570px] lg:p-0">
                 <div class="contents lg:relative lg:block lg:h-full">
-                  <div data-service-holder class="block lg:absolute lg:left-[35px] lg:top-[58px] lg:flex lg:w-[550px] lg:origin-top-left lg:items-end lg:gap-[30px] lg:will-change-transform">
-                    <span class="block shrink-0 font-sans text-[56px] font-bold leading-none text-brand-yellow lg:text-[96px] lg:leading-[0.86]">{number}</span>
-                    <h3 class="mt-1.5 font-display text-[20px] font-medium uppercase leading-[1.08] lg:mt-0 lg:max-w-[420px] lg:pb-[5px] lg:text-[22px]">{title}</h3>
+                  <div data-service-holder class="absolute left-0 top-0 flex w-max origin-top-left items-end gap-3.5 will-change-transform lg:left-[35px] lg:top-[58px] lg:w-[550px] lg:gap-[30px]">
+                    <span data-service-number class="block shrink-0 font-sans text-[52px] font-bold leading-none text-brand-yellow lg:text-[96px] lg:leading-[0.86]">{number}</span>
+                    <h3 data-service-title class="relative font-display text-[18px] font-medium uppercase leading-[1.1] lg:max-w-[420px] lg:pb-[5px] lg:text-[22px] lg:leading-[1.08]">
+                      <span data-title-zwei class="whitespace-nowrap lg:whitespace-normal">{zeile1}<br class="lg:hidden" /> {zeile2}</span>
+                      <span data-title-eins aria-hidden="true" class="pointer-events-none absolute bottom-0 left-0 whitespace-nowrap opacity-0 lg:hidden">{zeile1} {zeile2}</span>
+                    </h3>
                   </div>
-                  <div data-service-bottom class="mt-[26px] border-t border-white/20 pt-4 lg:absolute lg:bottom-[50px] lg:left-[35px] lg:right-[35px] lg:mt-0 lg:w-[500px] lg:pt-[14px] lg:will-change-transform">
+                  <div data-service-bottom class="absolute bottom-5 left-[92px] right-5 border-t border-white/20 pt-4 lg:bottom-[50px] lg:left-[35px] lg:right-[35px] lg:top-auto lg:w-[500px] lg:pt-[14px] lg:will-change-transform">
                     <p class="text-[15px] leading-[25.05px] text-white">{copy}</p>
-                    <a href={href} class="group/link mt-8 inline-flex items-center gap-[11px] text-[15px] uppercase leading-[25.05px] text-white lg:gap-4"><span class="link-gelb">
+                    <a href={href} class="group/link mt-5 inline-flex items-center gap-[11px] text-[15px] uppercase leading-[25.05px] text-white lg:mt-8 lg:gap-4"><span class="link-gelb">
                       Mehr erfahren</span> <img src="/images/arrow-white.svg" alt="" class="size-6 transition-transform duration-500 group-hover/link:translate-x-1" />
                     </a>
                   </div>
@@ -40,23 +46,20 @@ const services = [
               </div>
             </article>
             </div>
-          ))
+            );
+          })
         }
-        <article data-service-last class="flex h-[60svh] w-[290.152px] shrink-0 flex-col bg-brand-anthrazit px-6 py-[34px] lg:h-[572.795px] lg:w-[420px] lg:bg-transparent lg:px-[35px] lg:pb-[50px] lg:pt-[60px] lg:opacity-45 min-[1600px]:h-[calc(100svh-349.2px)]">
-          <h3 class="font-display text-[30px] leading-[0.98] lg:text-[61.44px]">
+        <article data-service-last class="flex h-[260px] w-full shrink-0 flex-col bg-brand-anthrazit px-5 py-5 lg:h-[572.795px] lg:w-[420px] lg:bg-transparent lg:px-[35px] lg:pb-[50px] lg:pt-[60px] lg:opacity-45 min-[1600px]:h-[calc(100svh-349.2px)]">
+          <h3 class="mb-3 font-display text-[24px] leading-[1.02] lg:mb-0 lg:text-[61.44px] lg:leading-[0.98]">
             <span class="block font-medium lg:leading-[60.2112px]">Sie haben<br class="hidden lg:block" /> einen<br class="hidden lg:block" /> Gartentraum?</span>
             <span class="block font-light lg:leading-[60.2112px]">Wir setzen<br class="hidden lg:block" /> ihn um.</span>
           </h3>
           <div class="mt-auto">
-            <p class="border-t border-white/50 pt-[14px] text-[18px] leading-[1.25] lg:text-[22px]">Persönlich. Verbindlich.<br />Aus einer Hand.</p>
-            <a href="/leistungen/" class="btn-fill btn-line mt-9 inline-flex items-center gap-8 px-[18px] py-[15px] text-[15px] uppercase leading-[25.05px]"><span class="tracking-[0.017em]">Alle Leistungen</span><span class="text-[28px] font-normal leading-[0.6]">→</span></a>
+            <p class="border-t border-white/50 pt-3 text-[15px] leading-[1.25] lg:pt-[14px] lg:text-[22px]">Persönlich. Verbindlich. Aus einer Hand.</p>
+            <a href="/leistungen/" class="btn-fill btn-line mt-4 inline-flex items-center gap-8 px-[18px] py-3 text-[15px] uppercase leading-[25.05px] lg:mt-9 lg:py-[15px]"><span class="tracking-[0.017em]">Alle Leistungen</span><span class="text-[28px] font-normal leading-[0.6]">→</span></a>
           </div>
         </article>
       </div>
-    </div>
-
-    <div class="mx-[15px] mt-[18px] h-0.5 shrink-0 bg-white/30 lg:hidden">
-      <span data-services-progress class="block h-full w-[17%] bg-brand-yellow"></span>
     </div>
   </div>
 </section>
@@ -68,110 +71,236 @@ const services = [
   gsap.registerPlugin(ScrollTrigger);
 
   const section = document.querySelector<HTMLElement>('[data-services-section]');
+  const stage = section?.querySelector<HTMLElement>('[data-services-stage]');
   const track = section?.querySelector<HTMLElement>('[data-services-track]');
   const boxes = section ? Array.from(section.querySelectorAll<HTMLElement>('[data-service-box]')) : [];
   const cards = section ? Array.from(section.querySelectorAll<HTMLElement>('[data-service-card]')) : [];
   const lastCard = section?.querySelector<HTMLElement>('[data-service-last]');
-  const progress = section?.querySelector<HTMLElement>('[data-services-progress]');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (section && track && lastCard && boxes.length === 6 && cards.length === 6 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (section && stage && track && lastCard && boxes.length === 6 && cards.length === 6) {
     const media = gsap.matchMedia();
 
+    /*
+     * Handy: derselbe Ablauf wie am Desktop, nur um 90° gedreht. Die Karten stehen übereinander. Eine offene Karte zeigt
+     * ihren Titel hochkant (links), beim Einfahren klappt der Titel nach unten in die Waagerechte, die Karte wird zum
+     * schmalen Streifen und die nächste rückt nach. Am Ende bleibt unten die Abschlusskarte.
+     */
     media.add('(max-width: 991.98px)', () => {
-      const tween = gsap.to(track, {
-        x: () => -(track.scrollWidth - window.innerWidth + 30),
-        ease: 'none',
-        scrollTrigger: {
+      const starts = [0.04, 0.2, 0.36, 0.52, 0.68, 0.82];
+      const duration = 0.16;
+      const STREIFEN_MIN = 48; // eingefahrene Karte inklusive 3 px Trennlinie, wächst auf großen Displays
+      const STREIFEN_MAX = 62;
+      const LINIE = 3;
+      const RAND = 20;
+      const ZIFFER_KLEIN = 0.5; // Maßstab der Ziffer im Streifen
+      const DREHUNG_BIS = 0.75; // ab diesem Fortschritt der Karte liegt der Titel schon waagerecht
+      const ABSTAND_KLEIN = 10; // Abstand Ziffer–Titel im Streifen
+
+      const glatt = (v: number) => (v < 0.5 ? 2 * v * v : 1 - Math.pow(-2 * v + 2, 2) / 2);
+      const weich = (v: number) => v * v * (3 - 2 * v);
+      const klemme = gsap.utils.clamp(0, 1);
+
+      const teile = cards.map((card) => {
+        const nimm = (selektor: string) => card.querySelector<HTMLElement>(selektor)!;
+        return {
+          holder: nimm('[data-service-holder]'),
+          bottom: nimm('[data-service-bottom]'),
+          num: nimm('[data-service-number]'),
+          title: nimm('[data-service-title]'),
+          zwei: nimm('[data-title-zwei]'),
+          eins: nimm('[data-title-eins]'),
+        };
+      });
+      gsap.set(teile.map((t) => [t.num, t.title]).flat(), { transformOrigin: '0% 100%' });
+
+      interface Mass { numW: number; numH: number; hh: number; gap: number; t2W: number; t1W: number; t1H: number; k: number }
+      const m = { offen: 330, streifen: STREIFEN_MIN, versatz: 0, mass: [] as Mass[] };
+      const letzter = new Array<number>(cards.length).fill(-1);
+
+      const messen = () => {
+        const buehne = stage.clientHeight;
+        const kartenBreite = boxes[0].clientWidth;
+
+        const mass = teile.map((t) => {
+          const numW = t.num.offsetWidth;
+          return {
+            numW,
+            numH: t.num.offsetHeight,
+            hh: t.holder.offsetHeight,
+            gap: parseFloat(getComputedStyle(t.holder).columnGap) || 14,
+            t2W: t.title.offsetWidth,
+            t1W: t.eins.offsetWidth,
+            t1H: t.eins.offsetHeight,
+            k: 1,
+          };
+        });
+        // Eine einheitliche Titelgröße für alle Streifen: so klein, dass der längste Titel noch in die Zeile passt
+        const k = gsap.utils.clamp(0.55, 0.95, Math.min(...mass.map((x) => (x.t1W ? (kartenBreite - 2 * RAND - (x.numW * ZIFFER_KLEIN + ABSTAND_KLEIN)) / x.t1W : 1))));
+        mass.forEach((x) => (x.k = k));
+        m.mass = mass;
+
+        // Offene Karte: so hoch, dass der hochkant stehende Titel hineinpasst, sonst nach Bühnenhöhe
+        const laengster = Math.max(...mass.map((x) => x.numW + x.gap + x.t2W));
+        m.offen = reduced ? 330 : Math.round(Math.max(laengster + 2 * RAND + 8, Math.min(330, Math.max(270, buehne * 0.6))));
+
+        // Abschlusskarte füllt den Rest unter den eingefahrenen Streifen, mindestens so hoch wie ihr Inhalt
+        lastCard.style.height = 'auto';
+        const bedarf = lastCard.offsetHeight;
+        if (reduced) {
+          m.versatz = 0;
+        } else {
+          m.streifen = Math.round(gsap.utils.clamp(STREIFEN_MIN, STREIFEN_MAX, (buehne - bedarf) / cards.length));
+          const rest = Math.max(bedarf, buehne - cards.length * m.streifen);
+          lastCard.style.height = `${rest}px`;
+          m.versatz = Math.max(0, cards.length * m.streifen + rest - buehne);
+        }
+        letzter.fill(-1);
+      };
+
+      const setze = (p: number) => {
+        teile.forEach((t, i) => {
+          const s = glatt(klemme((p - starts[i]) / duration));
+          if (s === letzter[i]) return;
+          letzter[i] = s;
+
+          const ms = m.mass[i];
+          const r = Math.min(1, s / DREHUNG_BIS); // Fortschritt der Drehung
+          const hoehe = m.streifen + (m.offen - m.streifen) * (1 - s);
+          const karte = hoehe - LINIE;
+          gsap.set(boxes[i], { height: hoehe });
+
+          const ziffer = 1 - (1 - ZIFFER_KLEIN) * r;
+          const titel = 1 - (1 - ms.k) * r;
+          const wechsel = weich(klemme((r - 0.72) / 0.2)); // zweizeiliger Titel blendet in den einzeiligen über
+          const luecke = ms.gap - (ms.gap - ABSTAND_KLEIN) * r;
+          const sicht = Math.max(ms.numH * ZIFFER_KLEIN, ms.t1H * ms.k); // Höhe des Inhalts im Streifen
+
+          // Drehpunkt: senkrecht unten links, waagerecht mittig im Streifen; dazwischen darf der Titel nie oben herausragen
+          const unten = karte - RAND;
+          const mitte = (karte - sicht) / 2 - (ms.hh - sicht);
+          let y = unten + (mitte - unten) * r * r;
+          const laenge = ms.numW * ziffer + luecke + (ms.t2W * (1 - wechsel) + ms.t1W * wechsel) * titel;
+          const hoch = laenge * Math.sin((1 - r) * (Math.PI / 2));
+          y = Math.max(y, hoch + 5 - (ms.hh - sicht) * r);
+
+          gsap.set(t.holder, { x: RAND, y, rotation: -90 * (1 - r) });
+          gsap.set(t.num, { scale: ziffer });
+          gsap.set(t.title, { scale: titel, x: -r * ((1 - ZIFFER_KLEIN) * ms.numW + (ms.gap - ABSTAND_KLEIN)) });
+          gsap.set(t.zwei, { opacity: 1 - wechsel });
+          gsap.set(t.eins, { opacity: wechsel });
+
+          const raus = klemme(s / 0.16);
+          gsap.set(t.bottom, { opacity: 1 - raus, x: 64 * klemme(s / 0.3), pointerEvents: raus > 0.3 ? 'none' : 'auto' });
+
+          if (i === cards.length - 1) gsap.set(track, { y: -m.versatz * s });
+        });
+      };
+
+      messen();
+      setze(0);
+
+      const trigger = reduced
+        ? null
+        : ScrollTrigger.create({
+            trigger: section,
+            start: 'top top',
+            end: 'bottom bottom',
+            invalidateOnRefresh: true,
+            onUpdate: (self) => setze(self.progress),
+            onRefresh: (self) => {
+              messen();
+              setze(self.progress);
+            },
+          });
+
+      return () => {
+        trigger?.kill();
+        gsap.set([track, lastCard, ...boxes], { clearProps: 'height,transform' });
+        teile.forEach((t) => gsap.set([t.holder, t.bottom, t.num, t.title, t.zwei, t.eins], { clearProps: 'transform,opacity,pointerEvents' }));
+      };
+    });
+
+    if (!reduced) {
+      media.add('(min-width: 992px)', () => {
+        const starts = [0.08, 0.24, 0.4, 0.56, 0.7, 0.82];
+        const duration = 0.18;
+        const openWidth = 640;
+        const lastMinimum = 420;
+
+        const easeProgress = (value: number) => value < 0.5
+          ? 2 * value * value
+          : 1 - Math.pow(-2 * value + 2, 2) / 2;
+
+        const collapsedWidth = () => {
+          const viewportWidth = document.documentElement.clientWidth;
+          return Math.min(170, Math.max(90, (viewportWidth - lastMinimum) / cards.length));
+        };
+
+        const update = (sectionProgress: number) => {
+          const collapsed = collapsedWidth();
+          const titleScale = 0.8 * (collapsed / 170);
+
+          gsap.set(lastCard, {
+            width: Math.max(lastMinimum, window.innerWidth - cards.length * collapsed),
+          });
+
+          cards.forEach((card, index) => {
+            const linearProgress = gsap.utils.clamp(0, 1, (sectionProgress - starts[index]) / duration);
+            const smoothProgress = easeProgress(linearProgress);
+            const box = boxes[index];
+            const holder = card.querySelector<HTMLElement>('[data-service-holder]');
+            const bottom = card.querySelector<HTMLElement>('[data-service-bottom]');
+
+            gsap.set(box, { width: openWidth - (openWidth - collapsed) * smoothProgress });
+
+            if (bottom) {
+              gsap.set(bottom, {
+                opacity: Math.max(0.75, 1 - smoothProgress),
+                xPercent: 100 * smoothProgress,
+                yPercent: -25 * smoothProgress,
+              });
+            }
+
+            if (holder) {
+              gsap.set(holder, {
+                y: Math.max(0, box.getBoundingClientRect().height - 120) * smoothProgress,
+                rotation: -90 * smoothProgress,
+                scale: 1 - (1 - titleScale) * smoothProgress,
+                left: 35 - 35 * (1 - collapsed / 170) * smoothProgress,
+                transformOrigin: '0% 0%',
+              });
+            }
+          });
+
+          const finalProgress = easeProgress(gsap.utils.clamp(0, 1, (sectionProgress - 0.86) / 0.14));
+          gsap.set(lastCard, { opacity: 0.45 + 0.55 * finalProgress });
+        };
+
+        update(0);
+
+        const trigger = ScrollTrigger.create({
           trigger: section,
           start: 'top top',
           end: 'bottom bottom',
-          scrub: 0.65,
+          scrub: 2.2,
           invalidateOnRefresh: true,
-          onUpdate: (self) => progress && gsap.set(progress, { width: `${17 + self.progress * 83}%` }),
-        },
+          onUpdate: (self) => update(self.progress),
+          onRefresh: (self) => update(self.progress),
+        });
+
+        return () => {
+          trigger.kill();
+          gsap.set([...boxes, lastCard], { clearProps: 'width,opacity,transform' });
+          cards.forEach((card) => {
+            gsap.set(card.querySelector('[data-service-holder]'), { clearProps: 'transform,left' });
+            gsap.set(card.querySelector('[data-service-bottom]'), { clearProps: 'transform,opacity' });
+          });
+        };
       });
-
-      return () => tween.kill();
-    });
-
-    media.add('(min-width: 992px)', () => {
-      const starts = [0.08, 0.24, 0.4, 0.56, 0.7, 0.82];
-      const duration = 0.18;
-      const openWidth = 640;
-      const lastMinimum = 420;
-
-      const easeProgress = (value: number) => value < 0.5
-        ? 2 * value * value
-        : 1 - Math.pow(-2 * value + 2, 2) / 2;
-
-      const collapsedWidth = () => {
-        const viewportWidth = document.documentElement.clientWidth;
-        return Math.min(170, Math.max(90, (viewportWidth - lastMinimum) / cards.length));
-      };
-
-      const update = (sectionProgress: number) => {
-        const collapsed = collapsedWidth();
-        const titleScale = 0.8 * (collapsed / 170);
-
-        gsap.set(lastCard, {
-          width: Math.max(lastMinimum, window.innerWidth - cards.length * collapsed),
-        });
-
-        cards.forEach((card, index) => {
-          const linearProgress = gsap.utils.clamp(0, 1, (sectionProgress - starts[index]) / duration);
-          const smoothProgress = easeProgress(linearProgress);
-          const box = boxes[index];
-          const holder = card.querySelector<HTMLElement>('[data-service-holder]');
-          const bottom = card.querySelector<HTMLElement>('[data-service-bottom]');
-
-          gsap.set(box, { width: openWidth - (openWidth - collapsed) * smoothProgress });
-
-          if (bottom) {
-            gsap.set(bottom, {
-              opacity: Math.max(0.75, 1 - smoothProgress),
-              xPercent: 100 * smoothProgress,
-              yPercent: -25 * smoothProgress,
-            });
-          }
-
-          if (holder) {
-            gsap.set(holder, {
-              y: Math.max(0, box.getBoundingClientRect().height - 120) * smoothProgress,
-              rotation: -90 * smoothProgress,
-              scale: 1 - (1 - titleScale) * smoothProgress,
-              left: 35 - 35 * (1 - collapsed / 170) * smoothProgress,
-              transformOrigin: '0% 0%',
-            });
-          }
-        });
-
-        const finalProgress = easeProgress(gsap.utils.clamp(0, 1, (sectionProgress - 0.86) / 0.14));
-        gsap.set(lastCard, { opacity: 0.45 + 0.55 * finalProgress });
-      };
-
-      update(0);
-
-      const trigger = ScrollTrigger.create({
-        trigger: section,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: 2.2,
-        invalidateOnRefresh: true,
-        onUpdate: (self) => update(self.progress),
-        onRefresh: (self) => update(self.progress),
-      });
-
-      return () => {
-        trigger.kill();
-        gsap.set([...boxes, lastCard], { clearProps: 'width,opacity,transform' });
-        cards.forEach((card) => {
-          gsap.set(card.querySelector('[data-service-holder]'), { clearProps: 'transform,left' });
-          gsap.set(card.querySelector('[data-service-bottom]'), { clearProps: 'transform,opacity' });
-        });
-      };
-    });
+    }
 
     window.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
+    document.fonts?.ready.then(() => ScrollTrigger.refresh());
   }
 </script>
-
