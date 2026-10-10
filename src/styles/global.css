@@ -8,6 +8,7 @@
 @import "@fontsource/space-grotesk/latin-600.css";
 
 
+
 @theme {
   --breakpoint-*: initial;
   --breakpoint-sm: 640px;
@@ -192,6 +193,10 @@
   transition: background-size 0.5s var(--ease-premium), color 0.3s;
 }
 .link-gelb:hover { background-size: 100% 100%; color: var(--color-brand-ink); }
+
+/* Fußzeile: grüner Rahmen um das Zellenraster, beim Überfahren des Rahmens (nicht des Rasters) sanft gelb */
+.fuss-rahmen { background-color: var(--color-brand-green); transition: background-color 0.8s ease-in-out; }
+.fuss-rahmen:hover:not(:has(.fuss-raster:hover)) { background-color: var(--color-brand-yellow); }
 
 /* Fußzeile: Link, dessen Text beim Überfahren nach oben wegrollt und gelb (oder in --roll) nachrollt */
 .roll { display: inline-block; height: 1lh; overflow: hidden; vertical-align: top; }

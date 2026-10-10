@@ -1,17 +1,21 @@
 ---
-// Fußzeile: Fläche in rechteckige Zellen mit feinen Linien geteilt, eine gelbe Kontaktzelle, die beim Überfahren grün füllt.
+// Fußzeile Desktop (ab lg): Fläche in rechteckige Zellen mit feinen Linien geteilt, grüner Rahmen (beim Überfahren sanft gelb), eine gelbe Kontaktzelle, die beim Überfahren grün füllt.
+// Darunter (Handy/Tablet) gilt FooterMobil.
+import FooterMobil from './FooterMobil.astro';
 import FussLink from './FussLink.astro';
 import { navigation, unternehmen, rechtliches, social, claim, weil, basel } from '../data/footer';
 
 const kopf = 'mb-6 flex items-center gap-2.5 text-[13px] font-bold uppercase tracking-[0.08em]';
-const zelle = 'bg-brand-anthrazit p-6 lg:p-9';
+const zelle = 'bg-brand-anthrazit p-9';
 ---
 
-<footer data-audit-section="footer" class="bg-brand-anthrazit text-white">
-  <div class="mx-auto max-w-[1920px] px-[15px] py-[15px] lg:px-[30px] lg:py-[30px] 2xl:px-[50px]">
-    <div class="grid grid-cols-2 gap-px border border-white/15 bg-white/15 lg:grid-cols-4">
+<FooterMobil />
+
+<footer data-audit-section="footer" class="fuss-rahmen hidden text-white lg:block">
+  <div class="mx-auto max-w-[1920px] px-[30px] py-[30px] 2xl:px-[50px]">
+    <div class="fuss-raster grid grid-cols-4 gap-px bg-[#535353]">
       <div class:list={[zelle, 'col-span-2 flex min-h-[270px] flex-col justify-between gap-12']}>
-        <img src="/images/eise-logo.svg" width="682" height="252" alt="Eise – natürlich schöne Gärten" class="block h-auto w-[170px] lg:w-[200px]" />
+        <img src="/images/eise-logo.svg" width="682" height="252" alt="Eise – natürlich schöne Gärten" class="block h-auto w-[200px]" />
         <div>
           <p class="max-w-[430px] text-[15px] leading-[25.05px] text-white/90">{claim}</p>
           <p class="mt-8 text-[13px] uppercase tracking-[0.08em] text-white/55">Familienbetrieb seit 1952</p>
@@ -33,20 +37,20 @@ const zelle = 'bg-brand-anthrazit p-6 lg:p-9';
       </nav>
 
       {[weil, basel].map((o) => (
-        <div class:list={[zelle, 'col-span-2 min-h-[220px] lg:col-span-1']}>
+        <div class:list={[zelle, 'min-h-[220px]']}>
           <h2 class={kopf}><span class="size-2 bg-brand-yellow"></span>{o.name}</h2>
           <address class="text-[15px] not-italic leading-[25.05px] text-white/85">{o.strasse}<br />{o.plz} {o.ort}</address>
           <p class="mt-5 text-[15px] leading-[25.05px]"><FussLink href={`tel:${o.telefonTel}`} text={o.telefon} /></p>
         </div>
       ))}
 
-      <a href="/kontakt/" class="group relative col-span-2 flex min-h-[220px] flex-col justify-between gap-10 overflow-hidden bg-brand-yellow p-6 text-brand-ink lg:p-9">
+      <a href="/kontakt/" class="group relative col-span-2 flex min-h-[220px] flex-col justify-between gap-10 overflow-hidden bg-brand-yellow p-9 text-brand-ink">
         <span aria-hidden="true" class="absolute inset-0 translate-y-full bg-brand-green transition-transform duration-700 [transition-timing-function:var(--ease-premium)] group-hover:translate-y-0"></span>
         <span class="relative text-[13px] font-bold uppercase tracking-[0.08em] transition-colors duration-500 group-hover:text-white">Gartenberatung</span>
-        <span class="relative font-display text-[28px] font-medium leading-[1.1] transition-colors duration-500 group-hover:text-white lg:text-[38px]">Ihr Garten beginnt<br />mit einem Gespräch.</span>
+        <span class="relative font-display text-[38px] font-medium leading-[1.1] transition-colors duration-500 group-hover:text-white">Ihr Garten beginnt<br />mit einem Gespräch.</span>
       </a>
 
-      <div class:list={[zelle, 'col-span-2 flex flex-wrap items-center justify-between gap-x-8 gap-y-4 !py-5 text-[13px] leading-[1.6] lg:col-span-4 lg:!py-6']}>
+      <div class:list={[zelle, 'col-span-4 flex flex-wrap items-center justify-between gap-x-8 gap-y-4 !py-6 text-[13px] leading-[1.6]']}>
         <p class="text-white/80">© Jürgen Eise Garten- und Landschaftsbau</p>
         <div class="flex flex-wrap items-center gap-x-8 gap-y-3 uppercase">
           <nav aria-label="Rechtliches" class="flex flex-wrap gap-x-6 gap-y-1">

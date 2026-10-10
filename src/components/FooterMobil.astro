@@ -1,0 +1,68 @@
+---
+// Fußzeile Handy/Tablet (unter lg): Ein Farbfoto öffnet sich beim Scrollen von der Mitte zur vollen Breite; der runde Anruf-Button sitzt auf der Kante zum dunklen Teil.
+import FussLink from './FussLink.astro';
+import { navigation, unternehmen, rechtliches, social, weil, basel } from '../data/footer';
+
+const kopf = 'mb-3 flex items-center gap-2.5 text-[12px] font-bold uppercase tracking-[0.08em]';
+---
+
+<footer data-fenster data-audit-section="footer" class="relative bg-brand-anthrazit text-white lg:hidden">
+  <div class="relative h-[74svh] min-h-[460px] overflow-hidden">
+    <div data-fenster-bild class="absolute inset-0 overflow-hidden">
+      <img data-fenster-img src="/images/footer-bg.webp" width="1800" height="1200" alt="Gepflegter Garten mit Pool und Natursteinmauer" loading="lazy" class="h-full w-full object-cover object-[45%_60%]" />
+    </div>
+    <p class="absolute left-[15px] top-6 bg-brand-yellow px-3 py-2 text-[12px] font-bold uppercase tracking-[0.08em] text-brand-ink">Familienbetrieb seit 1952</p>
+  </div>
+
+  <div data-sonar-zone class="relative overflow-x-clip px-[15px] pb-8 pt-[76px]">
+    <a href={`tel:${weil.telefonTel}`} data-sonar="#fed715" class="absolute right-[34px] top-0 z-[2] grid size-[112px] -translate-y-1/2 place-items-center rounded-full bg-brand-yellow text-center text-[13px] font-bold uppercase leading-[1.25] tracking-[0.06em] text-brand-ink">Jetzt<br />anrufen</a>
+
+    <p class="max-w-[250px] font-display text-[30px] font-medium leading-[1.08]">Ihr Garten beginnt mit einem Gespräch.</p>
+
+    <div class="mt-10 grid grid-cols-2 gap-x-6 gap-y-9 text-[15px] leading-[25.05px]">
+      <nav aria-label="Navigation">
+        <h2 class={kopf}><span class="size-2 bg-brand-yellow"></span>Navigation</h2>
+        <ul class="grid gap-1">{navigation.map(([text, href]) => <li><FussLink href={href} text={text} /></li>)}</ul>
+      </nav>
+      <nav aria-label="Unternehmen">
+        <h2 class={kopf}><span class="size-2 bg-brand-yellow"></span>Eise</h2>
+        <ul class="grid gap-1">{unternehmen.map(([text, href]) => <li><FussLink href={href} text={text} /></li>)}</ul>
+      </nav>
+      {[weil, basel].map((o) => (
+        <div>
+          <h2 class={kopf}><span class="size-2 bg-brand-yellow"></span>{o.name}</h2>
+          <address class="text-[14px] not-italic leading-[24px] text-white/80">{o.strasse}<br />{o.plz} {o.ort}</address>
+          <p class="mt-2 text-[14px] leading-[24px]"><FussLink href={`tel:${o.telefonTel}`} text={o.telefon} /></p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-10 grid gap-3 border-t border-white/15 pt-5 text-[12px] leading-[1.6]">
+      <p class="text-white/70">© Jürgen Eise Garten- und Landschaftsbau</p>
+      <div class="flex flex-wrap gap-x-5 gap-y-1 uppercase">
+        {rechtliches.map(([text, href]) => <FussLink href={href} text={text} />)}
+        {social.map(([text, href]) => <FussLink href={href} text={text} />)}
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const fuss = document.querySelector<HTMLElement>('[data-fenster]');
+  const bild = fuss?.querySelector<HTMLElement>('[data-fenster-bild]');
+  const foto = fuss?.querySelector<HTMLElement>('[data-fenster-img]');
+
+  if (fuss && bild && foto && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // Nur auf dem Handy: das Foto öffnet sich beim Hineinscrollen (Desktop zeigt das Raster)
+    gsap.matchMedia().add('(max-width: 991.98px)', () => {
+      const lauf = { trigger: fuss, start: 'top 92%', end: 'top 12%', scrub: 0.6 };
+      gsap.fromTo(bild, { clipPath: 'inset(16% 12% 16% 12%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', scrollTrigger: lauf });
+      gsap.fromTo(foto, { scale: 1.3 }, { scale: 1, ease: 'none', scrollTrigger: lauf });
+    });
+  }
+</script>
